@@ -6,11 +6,11 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 17:23:23 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/08/31 15:36:09 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/08/31 16:01:52 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "../includes/srcsZombie.hpp"
+#include "../includes/Zombie.hpp"
 
 int main(void)
 {

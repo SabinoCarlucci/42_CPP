@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 17:25:33 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/08/31 15:31:44 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/08/31 16:01:36 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -39,5 +39,12 @@ class Zombie {
 
 	void announce( void );
 };
+
+/* This function creates a zombie, names it, and returns it so you can use it outside
+of the function scope. */
+Zombie* newZombie( std::string name );
+
+//This function creates a zombie, names it, and makes it announce itself.
+void randomChump( std::string name );
 
 #endif
