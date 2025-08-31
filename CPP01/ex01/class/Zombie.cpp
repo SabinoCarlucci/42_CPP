@@ -6,16 +6,22 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 17:23:45 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/08/31 16:12:58 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/08/31 17:04:09 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../includes/Zombie.hpp"
 #include <iostream>
+#include <sstream>
 
-Zombie::Zombie() : _name("") 
+Zombie::Zombie()
 {
 	std::cout << "a nameless zombie rises" << std::endl;
+}
+
+Zombie::Zombie(std::string name) : _name(name)
+{
+	std::cout << this->_name << " is alive!" << std::endl;
 }
 
 Zombie::~Zombie()

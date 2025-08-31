@@ -1,37 +1,35 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/26 17:23:45 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/08/31 16:12:58 by scarlucc         ###   ########.fr       */
+/*   Created: 2025/08/31 16:39:18 by scarlucc          #+#    #+#             */
+/*   Updated: 2025/08/31 17:21:20 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../includes/Zombie.hpp"
-#include <iostream>
+#include <sstream>
 
-Zombie::Zombie() : _name("") 
+std::string	intToString(int i)
 {
-	std::cout << "a nameless zombie rises" << std::endl;
+	std::stringstream ss;
+	ss << i;
+	return (ss.str());
 }
 
-Zombie::~Zombie()
+Zombie* zombieHorde( int N, std::string name )
 {
-	std::cout << this->_name << " is dead(er)!" << std::endl;
-}
-
-void Zombie::setName(std::string name)
-{
+	if (N <= 0)
+		return (NULL);
 	if (name.empty())
-		name = "NPC";
-	this->_name = name;
-	std::cout << "a previously nameless zombie has been named " << this->_name << std::endl;
-}
+		name = "generic zombie";
+	Zombie* horde = new Zombie[N];
 
-void Zombie::announce( void )
-{
-	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	for (int i = 0; i < N; i++)
+		horde[i].setName(intToString(i + 1) + "° " + name);
+	
+	return (horde);
 }
