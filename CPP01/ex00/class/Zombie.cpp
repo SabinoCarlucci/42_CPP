@@ -6,14 +6,30 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 17:23:45 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/07/26 19:07:38 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/08/31 13:45:05 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../includes/Zombie.hpp"
 #include <iostream>
 
+Zombie::Zombie() : _name("") 
+{
+	std::cout << "a nameless zombie rises" << std::endl;
+}
+
+Zombie::~Zombie()
+{
+	std::cout << this->_name << " is dead(er)!" << std::endl;
+}
+
+void Zombie::setName(std::string name)
+{
+	this->_name = name;
+	std::cout << "a previously nameless zombie has been named " << this->_name << std::endl;
+}
+
 void Zombie::announce( void )
 {
-	std::cout << this->name << ": " <<  "BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
