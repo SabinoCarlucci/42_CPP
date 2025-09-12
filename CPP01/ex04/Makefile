@@ -6,12 +6,12 @@
 #    By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/25 16:46:25 by scarlucc          #+#    #+#              #
-#    Updated: 2025/09/09 09:42:07 by scarlucc         ###   ########.fr        #
+#    Updated: 2025/09/09 09:41:54 by scarlucc         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 
-NAME = violence
+NAME = sed
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes
