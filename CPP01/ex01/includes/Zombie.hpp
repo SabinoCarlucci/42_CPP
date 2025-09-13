@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 17:25:33 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/08/31 17:18:11 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/13 18:01:47 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,7 +26,7 @@ const std::string	BOLD_WHITE		= "\033[1;37m";
 
 class Zombie {
 	private:
-		std::string _name;
+		std::string name;
 
 	public:
 	//standard constructor	

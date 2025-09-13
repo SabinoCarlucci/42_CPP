@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 17:23:45 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/08/31 17:04:09 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/13 18:01:47 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,25 +19,25 @@ Zombie::Zombie()
 	std::cout << "a nameless zombie rises" << std::endl;
 }
 
-Zombie::Zombie(std::string name) : _name(name)
+Zombie::Zombie(std::string name) : name(name)
 {
-	std::cout << this->_name << " is alive!" << std::endl;
+	std::cout << this->name << " is alive!" << std::endl;
 }
 
 Zombie::~Zombie()
 {
-	std::cout << this->_name << " is dead(er)!" << std::endl;
+	std::cout << this->name << " is dead(er)!" << std::endl;
 }
 
 void Zombie::setName(std::string name)
 {
 	if (name.empty())
 		name = "NPC";
-	this->_name = name;
-	std::cout << "a previously nameless zombie has been named " << this->_name << std::endl;
+	this->name = name;
+	std::cout << "a previously nameless zombie has been named " << this->name << std::endl;
 }
 
 void Zombie::announce( void )
 {
-	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

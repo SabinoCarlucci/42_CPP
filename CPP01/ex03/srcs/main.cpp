@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 20:28:30 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/08 21:06:52 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/13 18:33:14 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -46,6 +46,10 @@ void test_unarmed_HumanB()
 	
 	Weapon invisible_weapon("");
 	Mario.setWeapon(invisible_weapon);
+	Mario.attack();
+
+	Weapon cartoon_weapon("::|===>");
+	Mario.setWeapon(cartoon_weapon);
 	Mario.attack();
 	
 	std::cout << std::endl;
