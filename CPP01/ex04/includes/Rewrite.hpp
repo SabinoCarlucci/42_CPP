@@ -6,16 +6,17 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 10:19:41 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/11 19:31:23 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/14 18:11:03 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
+
+
+#ifndef REWRITE_HPP
+#define REWRITE_HPP
 
 #include <string>
 #include <iostream>
 #include <fstream>
-
-#ifndef REWRITE_HPP
-#define REWRITE_HPP
 
 class Rewrite
 {

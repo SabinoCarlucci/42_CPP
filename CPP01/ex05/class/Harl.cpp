@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 16:54:03 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/13 17:37:17 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/13 19:48:56 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -49,5 +49,5 @@ void Harl::complain( std::string level )
 			return ;
 		}
 	}
-	std::cout << "you have selected " << level << "\n	I don't know what that is." << std::endl;
+	std::cout << "you have selected " << level << ".\n	I don't know what that is." << std::endl;
 }

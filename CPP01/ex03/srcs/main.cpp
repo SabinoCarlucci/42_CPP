@@ -6,12 +6,14 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 20:28:30 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/13 18:33:14 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/14 18:02:32 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../includes/HumanA.hpp"
 #include "../includes/HumanB.hpp"
+#include "../includes/Weapon.hpp"
+#include <iostream>
 
 void test_subject()
 {
@@ -40,8 +42,8 @@ void test_unarmed_HumanB()
 	HumanB Mario("Mario");
 	Mario.attack();
 	
-	Weapon hammer("hammer");
-	Mario.setWeapon(hammer);
+	Weapon sword("sword");
+	Mario.setWeapon(sword);
 	Mario.attack();
 	
 	Weapon invisible_weapon("");
@@ -55,7 +57,7 @@ void test_unarmed_HumanB()
 	std::cout << std::endl;
 }
 
-void test_HumanB_HumanB_same_weapon()
+void test_HumanA_HumanB_same_weapon()
 {
 	std::cout << "TEST 2: HumanA and HumanB get same weapon and attack" << std::endl;
 	Weapon hammer("hammer");
@@ -72,7 +74,7 @@ void test_HumanB_HumanB_same_weapon()
 int main()
 {
 	test_unarmed_HumanB();
-	test_HumanB_HumanB_same_weapon();
+	test_HumanA_HumanB_same_weapon();
 	test_subject();
 	
 	return 0;

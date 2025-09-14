@@ -6,14 +6,14 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 17:41:22 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/13 18:02:30 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/14 17:58:17 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include <string>
-
 #ifndef WEAPON_HPP
 #define WEAPON_HPP
+
+#include <string>
 
 class Weapon {
 	private:
@@ -21,20 +21,14 @@ class Weapon {
 
 	public:
 		//parameterized constructor
-		Weapon(std::string type) : type(type) {};
+		Weapon(std::string type);
 
 		//destructor
 		~Weapon() {};
 
-		const std::string &getType() 
-		{
-			return type;
-		};
+		const std::string &getType();
 
-		void setType(std::string type)
-		{
-			this->type = type;
-		};
+		void setType(std::string type);
 };
 
 #endif

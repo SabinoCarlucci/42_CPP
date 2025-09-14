@@ -6,9 +6,12 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 18:24:00 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/13 18:02:05 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/14 17:56:18 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
+
+#ifndef HUMANA_HPP
+#define HUMANA_HPP
 
 #include <string>
 #include <iostream>
@@ -22,14 +25,10 @@ class HumanA {
 	public:
 
 		//parametrized constructor
-		HumanA(std::string name, Weapon &weapon) : name(name), weapon(weapon)
-		{
-			//non serve scrivere niente?
-		};
+		HumanA(std::string name, Weapon &weapon);
 	
-		void attack()
-		{
-			std::cout << this->name << " attacks with their " << weapon.getType() << std::endl;
-		};
+		void attack();
 		
 };
+
+#endif
