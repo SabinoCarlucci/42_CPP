@@ -6,24 +6,24 @@
 #    By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/25 16:46:25 by scarlucc          #+#    #+#              #
-#    Updated: 2025/09/16 20:42:31 by scarlucc         ###   ########.fr        #
+#    Updated: 2025/09/17 17:31:56 by scarlucc         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 
 NAME = polymorphism
 
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes
+CXX = c++
+FLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes
 
 #--------Class files--------------------------------------#
 CLASS_PATH = ./class
-CLASS_SRC = $(wildcard $(CLASS_PATH)/*.cpp)
+CLASS_SRC = $(CLASS_PATH)/Animal.cpp $(CLASS_PATH)/Dog.cpp $(CLASS_PATH)/Cat.cpp $(CLASS_PATH)/WrongAnimal.cpp $(CLASS_PATH)/WrongCat.cpp
 #---------------------------------------------------------#
 
 #--------Source files-------------------------------------#
 SRC_PATH = ./srcs
-SRC_SRC = $(wildcard $(SRC_PATH)/*.cpp)
+SRC_SRC = $(SRC_PATH)/main.cpp
 #---------------------------------------------------------#
 
 #--------All source files---------------------------------#
@@ -40,15 +40,15 @@ all: .build $(NAME)
 
 #--------Compile program----------------------------------#
 $(NAME): $(OBJ)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJ)
+	@$(CXX) $(FLAGS) -o $(NAME) $(OBJ)
 #---------------------------------------------------------#
 
 #--------Compile object files-----------------------------#
 .build/%.o: $(SRC_PATH)/%.cpp | .build
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CXX) $(FLAGS) -c $< -o $@
 
 .build/%.o: $(CLASS_PATH)/%.cpp | .build
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CXX) $(FLAGS) -c $< -o $@
 #---------------------------------------------------------#
 
 #--------Create build directory---------------------------#

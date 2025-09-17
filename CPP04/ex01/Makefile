@@ -1,12 +1,29 @@
+#******************************************************************************#
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/07/25 16:46:25 by scarlucc          #+#    #+#              #
+#    Updated: 2025/09/17 18:46:57 by scarlucc         ###   ########.fr        #
+#                                                                              #
+#******************************************************************************#
 
-NAME = phonebook
+
+NAME = worldOnFire
 
 CXX = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes
 
 #--------Class files--------------------------------------#
 CLASS_PATH = ./class
-CLASS_SRC = $(CLASS_PATH)/Contact.cpp $(CLASS_PATH)/PhoneBook.cpp
+CLASS_SRC = $(CLASS_PATH)/Animal.cpp \
+			$(CLASS_PATH)/Dog.cpp \
+			$(CLASS_PATH)/Cat.cpp \
+			$(CLASS_PATH)/WrongAnimal.cpp \
+			$(CLASS_PATH)/WrongCat.cpp \
+			$(CLASS_PATH)/Brain.cpp
 #---------------------------------------------------------#
 
 #--------Source files-------------------------------------#

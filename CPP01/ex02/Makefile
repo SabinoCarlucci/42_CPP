@@ -6,14 +6,14 @@
 #    By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/31 19:47:29 by scarlucc          #+#    #+#              #
-#    Updated: 2025/08/31 19:48:07 by scarlucc         ###   ########.fr        #
+#    Updated: 2025/09/17 14:24:17 by scarlucc         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 
 NAME    = HI_THIS_IS_BRAIN
-CC      = c++
-CFLAGS  = -Wall -Wextra -Werror -std=c++98
+CXX      = c++
+CXXFLAGS  = -Wall -Wextra -Werror -std=c++98
 
 SRC     = main.cpp
 OBJ     = $(SRC:.cpp=.o)
@@ -22,10 +22,10 @@ OBJ     = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

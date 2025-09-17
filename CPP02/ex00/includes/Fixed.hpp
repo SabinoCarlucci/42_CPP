@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:09:44 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/15 18:08:51 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/17 14:51:59 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,8 +31,10 @@ class Fixed {
 		//destructor
 		~Fixed();
 
+		//get numberValue
 		int getRawBits( void ) const;
 
+		//set numberValue
 		void setRawBits( int const raw );
 };
 

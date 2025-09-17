@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 17:59:27 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/16 19:18:56 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/17 16:12:54 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,7 +15,7 @@
 #include <iostream>
 
 //default constructor
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap() :ClapTrap("nameless")
 {
 	hitPoints = 100;
     energyPoints = 50;

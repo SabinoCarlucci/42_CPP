@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 16:14:28 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/16 16:40:28 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/17 16:02:03 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,7 +24,9 @@ int main()
 	luigi.takeDamage(mario.getAttackDamage());
 	std::cout << std::endl;
 
+	std::cout << "Setting Mario's attack damage to 3" << std::endl;
 	mario.setAttackDamage(3);
+	std::cout << std::endl;
 
 	mario.attack("Luigi");
 	luigi.takeDamage(mario.getAttackDamage());
@@ -36,6 +38,7 @@ int main()
 	std::cout << std::endl;
 
 	luigi.setAttackDamage(10);
+	std::cout << "Setting Luigi's attack damage to 10" << std::endl;
 	luigi.attack("Mario");
 	mario.takeDamage(luigi.getAttackDamage());
 	mario.attack("Luigi");

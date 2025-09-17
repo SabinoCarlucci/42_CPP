@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 19:09:15 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/15 21:39:56 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/17 14:59:03 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -50,7 +50,7 @@ Fixed &Fixed::operator=(const Fixed &other)
  into the output stream object passed as a parameter*/
 std::ostream &operator<<(std::ostream &os, const Fixed &obj)
 {
-	os << obj.toFloat(); // non posso usarlo
+	os << obj.toFloat();
     return os;
 }
 

@@ -6,19 +6,19 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 15:32:08 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/16 16:38:18 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/17 15:48:01 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../includes/ClapTrap.hpp"
 #include <iostream>
 
-ClapTrap::ClapTrap()
+ClapTrap::ClapTrap()  :name("nameless"), hitPoints(10), energyPoints(10), attackDamage(0)
 {
 	std::cout << "nameless ClapTrap has been created" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string startName) :name(startName)
+ClapTrap::ClapTrap(std::string startName) :name(startName), hitPoints(10), energyPoints(10), attackDamage(0)
 {
 	std::cout << "ClapTrap " << this->name << " has been created!" << std::endl;
 }

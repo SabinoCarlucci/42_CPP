@@ -1,12 +1,17 @@
 
-NAME = phonebook
+NAME = abstractClass
 
 CXX = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes
 
 #--------Class files--------------------------------------#
 CLASS_PATH = ./class
-CLASS_SRC = $(CLASS_PATH)/Contact.cpp $(CLASS_PATH)/PhoneBook.cpp
+CLASS_SRC = $(CLASS_PATH)/Animal.cpp \
+			$(CLASS_PATH)/Dog.cpp \
+			$(CLASS_PATH)/Cat.cpp \
+			$(CLASS_PATH)/WrongAnimal.cpp \
+			$(CLASS_PATH)/WrongCat.cpp \
+			$(CLASS_PATH)/Brain.cpp
 #---------------------------------------------------------#
 
 #--------Source files-------------------------------------#

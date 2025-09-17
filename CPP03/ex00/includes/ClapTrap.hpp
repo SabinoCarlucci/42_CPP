@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 15:14:24 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/16 15:35:11 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/17 15:47:20 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,9 +18,9 @@
 class ClapTrap {
 	private:
 		std::string name;
-		int 		hitPoints = 10;
-		int 		energyPoints = 10;
-		int 		attackDamage = 0;
+		int 		hitPoints;
+		int 		energyPoints;
+		int 		attackDamage;
 
 	public:
 		//canonical form

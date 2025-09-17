@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 19:46:08 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/07/22 20:05:47 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/09/17 22:42:32 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,6 +16,8 @@
 #include <iomanip>
 #include <cstdio>
 #include <string>
+#include <cstdlib>
+#include <sstream>
 
 int	PhoneBook::oldest_contact = -1;
 int	PhoneBook::total_contacts = 0;
@@ -68,7 +70,7 @@ void	PhoneBook::search(void)
 	
 	for (int i = 0; total_contacts > i; i++)
 	{
-		std::cout << std::setw(10) << std::to_string(i) << "|"
+		std::cout << std::setw(10) << i << "|"
 				  << std::setw(10) << cutString(contacts[i].getFirstName()) << "|"
 				  << std::setw(10) << cutString(contacts[i].getLastName()) << "|"
 				  << std::setw(10) << cutString(contacts[i].getNickname())

@@ -1,29 +1,17 @@
-#******************************************************************************#
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/07/25 16:46:25 by scarlucc          #+#    #+#              #
-#    Updated: 2025/07/25 16:46:27 by scarlucc         ###   ########.fr        #
-#                                                                              #
-#******************************************************************************#
-
 
 NAME = BraiiiiiiinnnzzzZ
 
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes
+CXX = c++
+FLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes
 
 #--------Class files--------------------------------------#
 CLASS_PATH = ./class
-CLASS_SRC = $(wildcard $(CLASS_PATH)/*.cpp)
+CLASS_SRC = $(CLASS_PATH)/Zombie.cpp
 #---------------------------------------------------------#
 
 #--------Source files-------------------------------------#
 SRC_PATH = ./srcs
-SRC_SRC = $(wildcard $(SRC_PATH)/*.cpp)
+SRC_SRC = $(SRC_PATH)/main.cpp $(SRC_PATH)/newZombie.cpp $(SRC_PATH)/randomChump.cpp $(SRC_PATH)/zombieHorde.cpp
 #---------------------------------------------------------#
 
 #--------All source files---------------------------------#
@@ -40,15 +28,15 @@ all: .build $(NAME)
 
 #--------Compile program----------------------------------#
 $(NAME): $(OBJ)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJ)
+	@$(CXX) $(FLAGS) -o $(NAME) $(OBJ)
 #---------------------------------------------------------#
 
 #--------Compile object files-----------------------------#
 .build/%.o: $(SRC_PATH)/%.cpp | .build
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CXX) $(FLAGS) -c $< -o $@
 
 .build/%.o: $(CLASS_PATH)/%.cpp | .build
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CXX) $(FLAGS) -c $< -o $@
 #---------------------------------------------------------#
 
 #--------Create build directory---------------------------#
