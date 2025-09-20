@@ -4,7 +4,7 @@ Here are ten small projects from the 42 Core Curriculum to get acquainted with C
    * aaaa
    * bbbb
    * cccc
-     
+---
 2. CPP01
    * aaaa
    * bbbb
