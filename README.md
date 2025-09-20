@@ -46,9 +46,7 @@ Here are ten small projects from the 42 Core Curriculum to get acquainted with C
    * cccc
   ---
 10. CPP09
-   * aaaa
-   * bbbb
-   * cccc
+    * aaa
 
 
 
