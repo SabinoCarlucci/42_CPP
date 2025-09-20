@@ -1,9 +1,9 @@
 Here are ten small projects from the 42 Core Curriculum to get acquainted with C++ and what I learned  from them.
 
 1. CPP00
-   * aaaa
-   * bbbb
-   * cccc
+   * Namespaces, classes, member functions, stdio streams,
+    initialization lists, static, const, and some other basic
+    stuff
 ---
 2. CPP01
    * aaaa
