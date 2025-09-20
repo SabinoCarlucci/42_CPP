@@ -6,24 +6,19 @@ Here are ten small projects from the 42 Core Curriculum to get acquainted with C
     stuff
 ---
 2. CPP01
-   * aaaa
-   * bbbb
-   * cccc
+   * Memory allocation, pointers to members,
+    references and switch statements
 ---
 3. CPP02
-   * aaaa
-   * bbbb
-   * cccc
+   * Ad-hoc polymorphism, operator overloading
+     and the Orthodox Canonical class form
   ---
 4. CPP03
-   * aaaa
-   * bbbb
-   * cccc
+   * Inheritance
   ---
 5. CPP04
-   * aaaa
-   * bbbb
-   * cccc
+   * Subtype Polymorphism, Abstract Classes, and
+      Interfaces
   ---
 6. CPP05
    * aaaa
