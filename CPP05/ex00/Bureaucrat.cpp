@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:36:01 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/09/30 18:53:51 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/10/11 19:36:13 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,9 +15,12 @@
 #include <string>
 
 //constructors
-Bureaucrat::Bureaucrat(std::string startName, unsigned int startGrade) :name(startName)
+Bureaucrat::Bureaucrat(std::string startName, int startGrade) :name(startName)
 {
-	//if con i throw per gradi sbagliati
+	if (startGrade < 1)
+		throw GradeTooHighException();
+	if (startGrade > 150)
+		throw GradeTooLowException();
 	this->grade = startGrade;
 	std::cout << "Created " << *this << std::endl;
 }
@@ -42,7 +45,7 @@ Bureaucrat::~Bureaucrat()
 
 
 //operators
-std::ostream&	operator<<(std::ostream& os, Bureaucrat& bureaucrat)
+std::ostream&	operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
 {
 	//<name>, bureaucrat grade <grade>.
 	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade()<< ".";
@@ -57,24 +60,30 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 //operators
 
 
-unsigned int	Bureaucrat::getGrade()
+int	Bureaucrat::getGrade() const
 {
 	return (this->grade);
 }
 
-std::string		Bureaucrat::getName()
+std::string		Bureaucrat::getName() const
 {
 	return (this->name);
 }
 
 void				Bureaucrat::incrementGrade()
 {
+	if ((this->grade - 1) < 1)
+		throw GradeTooHighException();
 	this->grade--;
 }
 
 void				Bureaucrat::decrementGrade()
 {
+	if ((this->grade + 1) > 150)
+		throw GradeTooLowException();
 	this->grade++;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() { return "grade too high"; }
+
+const char* Bureaucrat::GradeTooLowException::what() const throw() { return "grade too low"; }
