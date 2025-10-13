@@ -6,32 +6,35 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:35:27 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/10/11 19:40:40 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/10/13 11:26:00 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main(void)
 {
 	try 
 	{
-		//Bureaucrat b0("MEGADIRETTORE", 0);
-		Bureaucrat b1;
+		//Form b0("MEGADIRETTORE", 0);
+		Form b1;
 		
-		Bureaucrat b2("ciccio");
+		Form b2("pen request");
 		//TEST INCREMENTO/DECREMENTO
-		b2.incrementGrade();
+		//b2.incrementGrade();
 		std::cout << b2 << std::endl;
 		
-		Bureaucrat b3("mario", 100);
+		Form b3("mario", 100);
 		//TEST INCREMENTO/DECREMENTO
-		b3.decrementGrade();
-		std::cout << b3 << std::endl;
+		//b3.decrementGrade();
+		//std::cout << b3 << std::endl;
 		
-		//Bureaucrat b4("merdaccia", 151);
-		//Bureaucrat b5("boh", -100);
-		Bureaucrat b6("Boss", 1);
+		//Form b4("merdaccia", 151);
+		//Form b5("boh", -100);
+		Form b6("Boss", 1, 100);
+
+		Form copia(b6);
+		std::cout << copia << std::endl;
 
 		//TEST INCREMENTO/DECREMENTO CON ERRORE
 		//b6.incrementGrade();
