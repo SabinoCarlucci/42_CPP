@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 22:21:33 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/10/13 11:20:58 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/10/14 11:27:15 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,7 +37,7 @@ Form::Form(const Form &other) :name(other.name), isSigned(other.isSigned), grade
 }
 //costructors
 
-
+//destructors
 Form::~Form()
 {
 	std::cout << "Scrapped " << *this << std::endl;
@@ -96,3 +96,11 @@ const char* Form::GradeTooHighException::what() const throw() { return "grade to
 
 const char* Form::GradeTooLowException::what() const throw() { return "grade too low"; }
 //exceptions
+
+
+void	Form::beSigned(Bureaucrat& bureaucrat)
+{
+	if (bureaucrat.getGrade() > this->gradeToSign)
+		throw GradeTooLowException();
+	this->isSigned = true;
+}

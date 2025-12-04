@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:36:01 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/10/11 19:36:13 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/10/14 12:08:19 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -82,6 +82,25 @@ void				Bureaucrat::decrementGrade()
 	if ((this->grade + 1) > 150)
 		throw GradeTooLowException();
 	this->grade++;
+}
+
+void	Bureaucrat::signForm(Form form)
+{
+	try
+	{
+		form.beSigned(*this);
+	}
+	catch (std::exception & e)//messaggio personalizzato per grado troppo basso
+	{
+		//<bureaucrat> couldn’t sign <form> because <reason>.
+		//std::string reason;
+		std::cout << this->name 
+					<< " could not sign " 
+					<< form.getName() 
+					<< " because " 
+					<< /* reason */ e.what()
+					<< std::endl;
+	}
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() { return "grade too high"; }

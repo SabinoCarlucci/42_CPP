@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 22:21:19 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/10/13 11:18:56 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/10/14 11:22:55 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,7 +33,7 @@ class Form {
 		bool				getIsSigned() const;
 		int					getGradeToSign() const;
 		int					getGradeToExec() const;
-		//void				beSigned(Bureaucrat& bureaucrat);
+		void				beSigned(Bureaucrat& bureaucrat);
 		
 		
 		//orthodox canonical form
