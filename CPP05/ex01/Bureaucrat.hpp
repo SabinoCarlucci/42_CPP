@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:35:57 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/10/14 12:08:26 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/05 18:44:20 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,6 +17,9 @@
 #include <iostream>
 #include <sstream>
 #include "Form.hpp"
+
+
+class Form;
 
 class Bureaucrat {
 	
@@ -31,7 +34,7 @@ class Bureaucrat {
 		std::string			getName() const;
 		void				incrementGrade();
 		void				decrementGrade();
-		void				signForm(Form form);
+		void				signForm(Form &form);
 		
 		//orthodox canonical form
 		Bureaucrat();

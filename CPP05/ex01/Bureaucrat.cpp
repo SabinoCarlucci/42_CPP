@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:36:01 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/10/14 12:08:19 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/05 18:42:07 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -84,11 +84,12 @@ void				Bureaucrat::decrementGrade()
 	this->grade++;
 }
 
-void	Bureaucrat::signForm(Form form)
+void	Bureaucrat::signForm(Form &form)
 {
 	try
 	{
 		form.beSigned(*this);
+		std::cout << *this << " signed " << form << std::endl;
 	}
 	catch (std::exception & e)//messaggio personalizzato per grado troppo basso
 	{

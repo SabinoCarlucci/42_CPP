@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 22:21:33 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/10/14 11:27:15 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/05 19:28:34 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -101,6 +101,6 @@ const char* Form::GradeTooLowException::what() const throw() { return "grade too
 void	Form::beSigned(Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.getGrade() > this->gradeToSign)
-		throw GradeTooLowException();
+		throw Form::GradeTooLowException();
 	this->isSigned = true;
 }
