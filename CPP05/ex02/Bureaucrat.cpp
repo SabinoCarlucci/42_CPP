@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:36:01 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/05 18:42:07 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:14:35 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -84,7 +84,7 @@ void				Bureaucrat::decrementGrade()
 	this->grade++;
 }
 
-void	Bureaucrat::signForm(Form &form)
+void	Bureaucrat::signForm(AForm &form)
 {
 	try
 	{
@@ -97,6 +97,26 @@ void	Bureaucrat::signForm(Form &form)
 		//std::string reason;
 		std::cout << this->name 
 					<< " could not sign " 
+					<< form.getName() 
+					<< " because " 
+					<< /* reason */ e.what()
+					<< std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(AForm const & form) const
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << *this << " executed " << form << std::endl;
+	}
+	catch (std::exception & e)//messaggio personalizzato per grado troppo basso
+	{
+		//<bureaucrat> couldn’t execute <form> because <reason>.
+		//std::string reason;
+		std::cout << this->name 
+					<< " could not execute " 
 					<< form.getName() 
 					<< " because " 
 					<< /* reason */ e.what()

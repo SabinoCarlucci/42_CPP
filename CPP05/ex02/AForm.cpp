@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 18:34:26 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/07 18:39:08 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:04:06 by scarlucc         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 
 #include "AForm.hpp"
@@ -96,6 +96,8 @@ int		AForm::getGradeToExec() const
 const char* AForm::GradeTooHighException::what() const throw() { return "grade too high"; }
 
 const char* AForm::GradeTooLowException::what() const throw() { return "grade too low"; }
+
+const char* AForm::FormNotSignedException::what() const throw() { return "form needs signature"; }
 //exceptions
 
 
@@ -104,4 +106,18 @@ void	AForm::beSigned(Bureaucrat& bureaucrat)
 	if (bureaucrat.getGrade() > this->gradeToSign)
 		throw AForm::GradeTooLowException();
 	this->isSigned = true;
+}
+
+void 	AForm::execute(Bureaucrat const & executor) const
+{
+	//controlla modulo firmato
+	if (!this->isSigned)
+		throw AForm::FormNotSignedException();
+
+	//controlla grado burocrate
+	if (executor.getGrade() > this->gradeToExec)
+		throw AForm::GradeTooLowException();
+
+	//chiama funzione oggetto figlio
+	this->doTheThing();
 }

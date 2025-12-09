@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:35:57 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/07 18:35:21 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:26:06 by scarlucc         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
@@ -19,7 +19,7 @@
 #include "AForm.hpp"
 
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 	
@@ -34,7 +34,8 @@ class Bureaucrat {
 		std::string			getName() const;
 		void				incrementGrade();
 		void				decrementGrade();
-		void				signForm(Form &form);
+		void				signForm(AForm &form);
+		void				executeForm(AForm const & form) const;
 		
 		//orthodox canonical form
 		Bureaucrat();

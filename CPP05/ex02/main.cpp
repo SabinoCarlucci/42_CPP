@@ -6,40 +6,32 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:35:27 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/05 19:28:50 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:05:34 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main(void)
 {
 	try 
 	{
-		Form f1;
+		PresidentialPardonForm f1;
 		std::cout << std::endl;
 		
-		Form f2("pen request");
-		std::cout << std::endl;
-		
-		Form f3("toilet paper request", 100);
-		std::cout << std::endl;
-
-		Form f6("Boss request", 1, 100);
+		//COPY FORM
+		PresidentialPardonForm copia(f1);
 		std::cout << std::endl;
 
 		Bureaucrat boss("Boss", 1);
-		boss.signForm(f6);
+		boss.signForm(f1);
 		std::cout << std::endl;
 
-		//COPY FORM
-		Form copia(f6);
-		std::cout << std::endl;
-
-		//TEST FIRMA
+		//TEST FIRMA con errore
 		Bureaucrat b1("Mario", 100);
-		b1.signForm(f3);
+		b1.signForm(copia);
 
 		//TEST COSTRUTTORE CON ERRORE
 		//Form f0("form sbagliato", 0);
@@ -47,8 +39,8 @@ int main(void)
 		//Form f5("boh", -100);
 		
 		//TEST FIRMA CON ERRORE
-		boss.signForm(f1);;
-		b1.signForm(f6);
+		/* boss.signForm(f1);;
+		b1.signForm(f6); */
 		
 	}
 	catch (std::exception & e)
