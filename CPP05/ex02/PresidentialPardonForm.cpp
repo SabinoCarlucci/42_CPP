@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 16:48:08 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/09 18:47:16 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/10 10:07:28 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,18 +19,18 @@
 
 PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", 25, 5), target("something")
 {
-	std::cout << "Created " << *this << std::endl;
+	//std::cout << "Created " << *this << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string		target) : AForm("PresidentialPardonForm", 25, 5), target(target)
 {
-	std::cout << "Created " << *this << std::endl;
+	//std::cout << "Created " << *this << std::endl;
 }
 
 //destructors
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-	std::cout << "Scrapped " << *this << std::endl;
+	//std::cout << "Scrapped " << *this << std::endl;
 }
 
 //getters
@@ -79,5 +79,5 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 
 void		PresidentialPardonForm::doTheThing() const
 {
-	std::cout << target << " has been pardoned by Zaphod Beeblebrox"; 
+	std::cout << target << " has been pardoned by Zaphod Beeblebrox" << std::endl; 
 }
