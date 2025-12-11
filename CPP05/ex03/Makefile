@@ -1,9 +1,9 @@
-NAME = form
+NAME = intern
 
 CXX = c++
 CXXFLAGS =  -Wall -Wextra -Werror -std=c++98 -Iincludes -g -D_GLIBCXX_DEBUG#flag per debuggare
 
-SRC 	= main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+SRC 	= main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 OBJ 	= $(SRC:.cpp=.o)
 
 
