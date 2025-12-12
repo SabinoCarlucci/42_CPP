@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:35:27 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/11 18:32:26 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/12 10:36:57 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -36,6 +36,12 @@ int main(void)
 		
 		if (wrong_Hitler)
 			std::cout << *wrong_Hitler << std::endl;
+
+		delete pardon_Hitler;
+		delete robotomize_Hitler;
+		delete shrubbery_Hitler;
+		if (wrong_Hitler)
+			delete wrong_Hitler;
 	}
 	catch (std::exception & e)
 	{

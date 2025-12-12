@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 18:34:49 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/09 19:03:54 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/12 10:39:04 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -43,7 +43,7 @@ class AForm {
 		
 		//orthodox canonical form
 		AForm();
-		~AForm();
+		virtual ~AForm();
 		AForm(const AForm &other);
 		AForm& operator=(const AForm& form);
 
