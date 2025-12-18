@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:36:01 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/09 16:14:35 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/17 18:32:33 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -101,6 +101,7 @@ void	Bureaucrat::signForm(AForm &form)
 					<< " because " 
 					<< /* reason */ e.what()
 					<< std::endl;
+		throw;
 	}
 }
 
@@ -121,6 +122,7 @@ void	Bureaucrat::executeForm(AForm const & form) const
 					<< " because " 
 					<< /* reason */ e.what()
 					<< std::endl;
+		throw;
 	}
 }
 

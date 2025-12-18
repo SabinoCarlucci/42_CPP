@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 18:34:49 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/09 19:03:54 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/18 14:31:23 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,8 +29,10 @@ class AForm {
         bool               	isSigned;
         const int           gradeToSign;
         const int           gradeToExec;
-
-		public:
+		
+		virtual void		doTheThing() const = 0;
+		
+	public:
 		//subject
 		std::string			getName() const;
 		bool				getIsSigned() const;
@@ -38,12 +40,11 @@ class AForm {
 		int					getGradeToExec() const;
 		void				beSigned(Bureaucrat& bureaucrat);
 		void 				execute(Bureaucrat const & executor) const;
-		virtual void		doTheThing() const = 0;
 		
 		
 		//orthodox canonical form
 		AForm();
-		~AForm();
+		virtual ~AForm();
 		AForm(const AForm &other);
 		AForm& operator=(const AForm& form);
 

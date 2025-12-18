@@ -6,14 +6,19 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:28:03 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/11 18:28:16 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/16 11:08:26 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Intern.hpp"
 
 
-Intern::Intern() {}
+Intern::Intern() 
+{
+	forms["robotomy request"] = &Intern::createRobotomy;
+	forms["pardon request"] = &Intern::createPresidential;
+	forms["shrubbery request"] = &Intern::createShrubbery;
+}
 
 Intern::~Intern() {}
 
@@ -48,24 +53,12 @@ const char* Intern::UnknownFormException::what() const throw() { return "Form Un
 
 AForm* Intern::makeForm(std::string formName, std::string target)
 {
-	std::map<std::string, AForm* (Intern::*)(std::string const &target)> forms;
-	forms["robotomy request"] = &Intern::createRobotomy;
-	forms["pardon request"] = &Intern::createPresidential;
-	forms["shrubbery request"] = &Intern::createShrubbery;
-
-	try
+	if (forms.find(formName) != forms.end())
 	{
-		if (forms.find(formName) != forms.end())
-		{
-			std::cout << "Intern creates " << formName << std::endl;
-			return (this->*forms[formName])(target);
-		}
-		else
-			throw UnknownFormException();
+		std::cout << "Intern creates " << formName << std::endl;
+		return (this->*forms[formName])(target);
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	else
+		throw UnknownFormException();
 	return (NULL);
 }

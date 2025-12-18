@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:35:27 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/10 13:02:06 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/18 14:00:38 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,7 +24,7 @@ int main(void)
 		std::cout << std::endl;
 		
 		//COPY FORM
-		PresidentialPardonForm copia(f1);
+	 	PresidentialPardonForm copia(f1);
 		std::cout << std::endl;
 
 		Bureaucrat boss("Boss", 1);
@@ -33,6 +33,7 @@ int main(void)
 
 		//TEST FIRMA con errore
 		Bureaucrat b1("Mario", 100);
+		std::cout << std::endl;
 		//b1.signForm(copia); //uncomment to test error
 		//b1.executeForm(copia); //uncomment to test error
 		//b1.executeForm(f1); //uncomment to test error
@@ -60,7 +61,7 @@ int main(void)
 		std::cout << std::endl; */
 
 		//TEST SHRUBBERY
-		std::cout << "TEST SHRUBBERY" << std::endl;
+		 std::cout << "TEST SHRUBBERY" << std::endl;
 
 		ShrubberyCreationForm shrub("pine");
 		std::cout << std::endl;

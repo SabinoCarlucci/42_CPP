@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 22:21:19 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/05 18:45:13 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/17 17:06:09 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,7 +28,7 @@ class Form {
         bool               	isSigned;
         const int           gradeToSign;
         const int           gradeToExec;
-
+		
 		public:
 		//subject
 		std::string			getName() const;

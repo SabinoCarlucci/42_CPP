@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 11:36:56 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/10 12:25:22 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:29:19 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,12 +20,21 @@
 #include <sstream>
 
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137), target("something") {}
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Generic ShrubberyCreationForm", 145, 137), target("something") 
+{
+	std::cout << "Created " << *this << std::endl;
+}
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string		target) : AForm("ShrubberyCreationForm", 145, 137), target(target) {}
+ShrubberyCreationForm::ShrubberyCreationForm(std::string		target) : AForm("Generic ShrubberyCreationForm", 145, 137), target(target) 
+{
+	std::cout << "Created " << *this << std::endl;
+}
 
 //destructors
-ShrubberyCreationForm::~ShrubberyCreationForm() {}
+ShrubberyCreationForm::~ShrubberyCreationForm() 
+{
+	std::cout << "Scrapped " << *this << std::endl;
+}
 
 //getters
 std::string		ShrubberyCreationForm::getTarget() const
@@ -39,6 +48,12 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 {
 	AForm::operator=(form);
 	return (*this);
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &other) 
+	: AForm(other), target(other.target)
+{
+	std::cout << "Copied " << *this << std::endl;
 }
 
 void		ShrubberyCreationForm::doTheThing() const

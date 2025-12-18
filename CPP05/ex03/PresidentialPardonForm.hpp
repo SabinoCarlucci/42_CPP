@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 19:48:09 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/09 19:06:08 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/16 09:39:17 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,18 +24,15 @@ class Bureaucrat;
 class PresidentialPardonForm : public AForm {
     private:
 		std::string		target;
+		void			doTheThing() const;
 	
 	public:
 		std::string			getTarget() const;
-		/* std::string			getName() const;
-		bool				getIsSigned() const;
-		int					getGradeToSign() const;
-		int					getGradeToExec() const; */
 		PresidentialPardonForm();
 		PresidentialPardonForm(std::string		target);
 		~PresidentialPardonForm();
 		PresidentialPardonForm& operator=(const PresidentialPardonForm& form);
-		void		doTheThing() const;
+		PresidentialPardonForm(PresidentialPardonForm const &other);
 };
 
 std::ostream& 		operator<<(std::ostream& os, const AForm& form);

@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 16:48:08 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/10 11:33:22 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:28:10 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,12 +19,21 @@
 #include <cstdlib> // Needed for rand() and srand()
 #include <ctime>   // Needed for time()
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45), target("something") {}
+RobotomyRequestForm::RobotomyRequestForm() : AForm("Generic RobotomyRequestForm", 72, 45), target("something") 
+{
+	std::cout << "Created " << *this << std::endl;
+}
 
-RobotomyRequestForm::RobotomyRequestForm(std::string		target) : AForm("RobotomyRequestForm", 72, 45), target(target) {}
+RobotomyRequestForm::RobotomyRequestForm(std::string		target) : AForm("Generic RobotomyRequestForm", 72, 45), target(target) 
+{
+	std::cout << "Created " << *this << std::endl;
+}
 
 //destructors
-RobotomyRequestForm::~RobotomyRequestForm() {}
+RobotomyRequestForm::~RobotomyRequestForm() 
+{
+	std::cout << "Scrapped " << *this << std::endl;
+}
 
 //getters
 std::string		RobotomyRequestForm::getTarget() const
@@ -38,6 +47,12 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& f
 {
 	AForm::operator=(form);
 	return (*this);
+}
+
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &other) 
+	: AForm(other), target(other.target)
+{
+	std::cout << "Copied " << *this << std::endl;
 }
 
 void		RobotomyRequestForm::doTheThing() const

@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 11:35:36 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/10 11:36:31 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/16 11:01:49 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,6 +24,7 @@ class Bureaucrat;
 class ShrubberyCreationForm : public AForm {
     private:
 		std::string		target;
+		void		doTheThing() const;
 	
 	public:
 		std::string			getTarget() const;
@@ -31,7 +32,7 @@ class ShrubberyCreationForm : public AForm {
 		ShrubberyCreationForm(std::string		target);
 		~ShrubberyCreationForm();
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& form);
-		void		doTheThing() const;
+		ShrubberyCreationForm(ShrubberyCreationForm const &other) ;
 };
 
 std::ostream& 		operator<<(std::ostream& os, const AForm& form);

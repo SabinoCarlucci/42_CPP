@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 22:21:33 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/05 19:28:34 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/17 17:07:27 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,7 +18,7 @@
 Form::Form() :name("paperclip_request"), gradeToSign(150), gradeToExec(150)
 {
 	this->isSigned = false;
-	std::cout << "Created " << *this << std::endl;
+	std::cout << "Created Form for " << *this << std::endl;
 }
 
 Form::Form(std::string startName, int gradeToSign, int gradeToExec) :name(startName), gradeToSign(gradeToSign), gradeToExec(gradeToExec)
@@ -28,19 +28,19 @@ Form::Form(std::string startName, int gradeToSign, int gradeToExec) :name(startN
 	if (gradeToSign > 150 || gradeToExec > 150)
 		throw GradeTooLowException();
 	this->isSigned = false;
-	std::cout << "Created " << *this << std::endl;
+	std::cout << "Created Form for " << *this << std::endl;
 }
 
 Form::Form(const Form &other) :name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExec(other.gradeToExec)
 {
-	std::cout << "Copied " << *this << std::endl;
+	std::cout << "Copied Form for " << *this << std::endl;
 }
 //costructors
 
 //destructors
 Form::~Form()
 {
-	std::cout << "Scrapped " << *this << std::endl;
+	std::cout << "Scrapped Form for " << *this << std::endl;
 }
 
 
