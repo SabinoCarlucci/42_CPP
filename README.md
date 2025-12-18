@@ -21,9 +21,7 @@ Here are ten small projects from the 42 Core Curriculum to get acquainted with C
       Interfaces
   ---
 6. CPP05
-   * aaaa
-   * bbbb
-   * cccc
+   * try and catch
   ---
 7. CPP06
    * aaaa
