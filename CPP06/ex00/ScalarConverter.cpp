@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
@@ -6,11 +6,13 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 20:37:34 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/21 20:53:41 by scarlucc         ###   ########.fr       */
+/*   Updated: 2025/12/22 20:05:37 by scarlucc         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "ScalarConverter.hpp"
+#include <sstream>
+#include <limits>
 
 //ortodox canonical form
 ScalarConverter::ScalarConverter()
@@ -37,15 +39,221 @@ ScalarConverter::ScalarConverter(const ScalarConverter &other)
 
 
 
+//==============================================================
+
+std::string ScalarConverter::charToString(char c)
+{
+	if (c >= 32 && c < 127)
+		return std::string("'") + c + "'";
+	return "Non displayable";
+}
+
+std::string ScalarConverter::intToString(int i)
+{
+	std::stringstream ss;
+	ss << i;
+	return ss.str();
+}
+
+std::string ScalarConverter::floatToString(float f)
+{
+	std::stringstream ss;
+	ss << f << "f";
+	return ss.str();
+}
+
+std::string ScalarConverter::doubleToString(double d)
+{
+	std::stringstream ss;
+	ss << d;
+	return ss.str();
+}
+
+//====================================================
+
+void ScalarConverter::printConversion(const std::string &charVal,
+								const std::string &intVal,
+								const std::string &floatVal,
+								const std::string &doubleVal)
+{    
+    std::cout << "char: " << charVal << std::endl;
+    std::cout << "int: " << intVal << std::endl;
+    std::cout << "float: " << floatVal << std::endl;
+    std::cout << "double: " << doubleVal << std::endl;
+}
+
+//====================================================
+
 void ScalarConverter::convert(const std::string& literal)
 {
-    //fa cose
-    
-    std::cout << "char: " << std::endl;
-    std::cout << "int: " << std::endl;
-    std::cout << "float: " << std::endl;
-    std::cout << "double: " << std::endl;
+	char 	printChar;
+	int 	printInt;
+	float 	printFloat;
+	double 	printDouble;
+
+	//altri controlli
+	if (literal == "nan" || literal == "nanf")
+	{
+		printConversion(
+			"impossible",
+			"impossible",
+			"nanf",
+			"nan"
+		);
+		return;
+	}
+
+	if (literal == "+inf" || literal == "-inf")
+	{
+		printConversion(
+			"impossible",
+			"impossible",
+			literal + "f",
+			literal
+		);
+		return;
+	}
+
+	if (literal == "+inff" || literal == "-inff")
+	{
+		printConversion(
+			"impossible",
+			"impossible",
+			literal,
+			literal.substr(0, literal.size() - 1)
+		);
+		return;
+	}
+	
+	//literal is char
+	if ((literal.length() == 1 && !(literal[0] >= '0' && literal[0] <= '9'))
+		|| (literal.length() == 3 && literal[0] == '\'' && literal[2] == '\'' && !(literal[1] >= '0' && literal[1] <= '9')))
+	{
+		
+		char printThis;
+		if (literal.length() == 1)
+			printThis = literal[0];
+		else
+			printThis = literal[1];
+		
+		printChar = printThis;
+		printInt = static_cast<int>(printChar);
+		printFloat = static_cast<float>(printChar);
+		printDouble = static_cast<double>(printChar);
+
+		printConversion(
+			charToString(printChar),
+			intToString(printInt),
+			floatToString(printFloat),
+			doubleToString(printDouble)
+		);
+		return;//se e' char, non serve fare altro
+	}
+
+	//check if literal is valid
+	char* end;
+	double value = std::strtod(literal.c_str(), &end);
+
+	if (*end != '\0' && *end != 'f')//funzione a parte
+	{
+		std::cout << "Invalid literal" << std::endl;
+		return;
+	}
+	//(void)value;
+
+	//controllo su tipo e conversioni
+
+	/* bool charImpossible = false;
+	bool intImpossible = false; */
+
+	std::string stringChar;
+	std::string stringInt;
+	/* std::string stringFloat;
+	std::string stringDouble; */
+	
+	
+	if (literal[literal.length() - 1] == 'f')
+	{
+		//e' un float
+		/* bool charImpossible = false;
+		bool intImpossible = false; */
+
+		printFloat = static_cast<float>(value);
+		printDouble = static_cast<double>(printFloat);
+
+		if (value < std::numeric_limits<int>::min() ||
+			value > std::numeric_limits<int>::max() ||
+			std::isnan(value) || std::isinf(value))
+			//intImpossible = true;
+			stringInt = "impossible";
+		else
+			printInt = static_cast<int>(value);
+
+		if (value < std::numeric_limits<char>::min() ||
+			value > std::numeric_limits<char>::max() ||
+			std::isnan(value) || std::isinf(value))
+			//charImpossible = true;
+			stringChar = "impossible";
+		else
+			printChar = static_cast<char>(value);
+	}
+	else if (literal.find('.') != std::string::npos)
+	{
+		//e' un double
+		/* bool charImpossible = false;
+		bool intImpossible = false; */
+
+		printDouble = value;
+		printFloat = static_cast<float>(value);
+
+		if (value < std::numeric_limits<int>::min() ||
+			value > std::numeric_limits<int>::max() ||
+			std::isnan(value) || std::isinf(value))
+			//intImpossible = true;
+			stringInt = "impossible";
+		else
+			printInt = static_cast<int>(value);
+
+		if (value < std::numeric_limits<char>::min() ||
+			value > std::numeric_limits<char>::max() ||
+			std::isnan(value) || std::isinf(value))
+			//charImpossible = true;
+			stringChar = "impossible";
+		else
+			printChar = static_cast<char>(value);
+	}
+	else
+	{
+		//e' un int
+		if (value < std::numeric_limits<int>::min() ||
+			value > std::numeric_limits<int>::max())
+		{
+			stringInt = "impossible";
+			stringChar = "impossible";
+			printFloat = static_cast<float>(value);
+			printDouble = static_cast<double>(value);
+		}
+		else
+		{
+			printInt = static_cast<int>(value);
+			printChar = static_cast<char>(printInt);
+			printFloat = static_cast<float>(printInt);
+			printDouble = static_cast<double>(printInt);
+		}
+	}
 
 
-
+	//alla fine stampa tutto
+	if (stringInt.empty())
+		stringInt = intToString(printInt);
+	if (stringChar.empty())
+		stringChar = charToString(printChar);
+		
+	printConversion(
+			stringChar,
+			stringInt,
+			floatToString(printFloat),
+			doubleToString(printDouble)
+	);
+	return;
 }
