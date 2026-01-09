@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 20:37:34 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/22 20:05:37 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/01/09 00:38:07 by scarlucc         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 #include <sstream>
@@ -154,29 +154,19 @@ void ScalarConverter::convert(const std::string& literal)
 	char* end;
 	double value = std::strtod(literal.c_str(), &end);
 
-	if (*end != '\0' && *end != 'f')//funzione a parte
+	if (*end != '\0' && *end != 'f')//funzione a parte da scrivere per il parsing
 	{
-		std::cout << "Invalid literal" << std::endl;
+		std::cerr << "Invalid literal" << std::endl;
 		return;
 	}
-	//(void)value;
 
-	//controllo su tipo e conversioni
-
-	/* bool charImpossible = false;
-	bool intImpossible = false; */
-
+	
 	std::string stringChar;
 	std::string stringInt;
-	/* std::string stringFloat;
-	std::string stringDouble; */
 	
-	
-	if (literal[literal.length() - 1] == 'f')
+	if (literal[literal.length() - 1] == 'f' && literal.length() > 1)
 	{
 		//e' un float
-		/* bool charImpossible = false;
-		bool intImpossible = false; */
 
 		printFloat = static_cast<float>(value);
 		printDouble = static_cast<double>(printFloat);
@@ -184,7 +174,6 @@ void ScalarConverter::convert(const std::string& literal)
 		if (value < std::numeric_limits<int>::min() ||
 			value > std::numeric_limits<int>::max() ||
 			std::isnan(value) || std::isinf(value))
-			//intImpossible = true;
 			stringInt = "impossible";
 		else
 			printInt = static_cast<int>(value);
