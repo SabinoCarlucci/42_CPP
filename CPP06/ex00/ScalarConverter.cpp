@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 20:37:34 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/01/09 00:38:07 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/01/10 18:08:22 by scarlucc         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "ScalarConverter.hpp"
 #include <sstream>
@@ -152,7 +152,7 @@ void ScalarConverter::convert(const std::string& literal)
 
 	//check if literal is valid
 	char* end;
-	double value = std::strtod(literal.c_str(), &end);
+	double value = std::strtod(literal.c_str(), &end);//converti input in double, poi magari in altri tipi
 
 	if (*end != '\0' && *end != 'f')//funzione a parte da scrivere per il parsing
 	{
@@ -181,7 +181,6 @@ void ScalarConverter::convert(const std::string& literal)
 		if (value < std::numeric_limits<char>::min() ||
 			value > std::numeric_limits<char>::max() ||
 			std::isnan(value) || std::isinf(value))
-			//charImpossible = true;
 			stringChar = "impossible";
 		else
 			printChar = static_cast<char>(value);
@@ -189,8 +188,6 @@ void ScalarConverter::convert(const std::string& literal)
 	else if (literal.find('.') != std::string::npos)
 	{
 		//e' un double
-		/* bool charImpossible = false;
-		bool intImpossible = false; */
 
 		printDouble = value;
 		printFloat = static_cast<float>(value);
@@ -198,7 +195,6 @@ void ScalarConverter::convert(const std::string& literal)
 		if (value < std::numeric_limits<int>::min() ||
 			value > std::numeric_limits<int>::max() ||
 			std::isnan(value) || std::isinf(value))
-			//intImpossible = true;
 			stringInt = "impossible";
 		else
 			printInt = static_cast<int>(value);
@@ -206,7 +202,6 @@ void ScalarConverter::convert(const std::string& literal)
 		if (value < std::numeric_limits<char>::min() ||
 			value > std::numeric_limits<char>::max() ||
 			std::isnan(value) || std::isinf(value))
-			//charImpossible = true;
 			stringChar = "impossible";
 		else
 			printChar = static_cast<char>(value);
@@ -217,10 +212,8 @@ void ScalarConverter::convert(const std::string& literal)
 		if (value < std::numeric_limits<int>::min() ||
 			value > std::numeric_limits<int>::max())
 		{
-			stringInt = "impossible";
-			stringChar = "impossible";
-			printFloat = static_cast<float>(value);
-			printDouble = static_cast<double>(value);
+			std::cerr << "given literal could not be represented as an integer" << std::endl;
+			return;
 		}
 		else
 		{
