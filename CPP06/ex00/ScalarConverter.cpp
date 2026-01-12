@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 20:37:34 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/01/10 18:08:22 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/01/12 18:29:06 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -84,6 +84,53 @@ void ScalarConverter::printConversion(const std::string &charVal,
 
 //====================================================
 
+bool ScalarConverter::parseLiteral(std::string literal)
+{
+	bool foundPoint = false;
+	
+	//empty literal
+	if (literal.length() == 0)
+	{
+		std::cerr << "Empty literal" << std::endl;
+		return false;
+	}
+		
+
+	for (size_t counter = 0; counter < literal.length(); counter++)
+	{
+		//literal has more than one . and/or there are no digits before/after .
+		if (literal[counter] == '.')
+		{
+			if (!foundPoint && ((counter > 0 && isdigit(literal[counter - 1])) || ((counter + 1) < literal.length() && isdigit(literal[counter + 1]))))
+			{
+				foundPoint = true;
+				continue;
+			}
+			else
+			{
+				std::cerr << "Invalid literal: Error with dots in literal" << std::endl;
+				return false;
+			}
+		}
+		
+		//troppe f
+		if (literal[counter] == 'f')
+		{
+			if (counter != (literal.length() - 1) || literal.length() == 1)
+			{
+				std::cerr << "Invalid literal: Error with 'f' in literal" << std::endl;
+				return false;
+			}
+			continue;
+		}
+
+		//altre lettere o simboli
+	}
+	return true;//literal is ok
+}
+
+//====================================================
+
 void ScalarConverter::convert(const std::string& literal)
 {
 	char 	printChar;
@@ -151,14 +198,17 @@ void ScalarConverter::convert(const std::string& literal)
 	}
 
 	//check if literal is valid
+	if (!parseLiteral(literal))
+		return;
+	
 	char* end;
 	double value = std::strtod(literal.c_str(), &end);//converti input in double, poi magari in altri tipi
 
-	if (*end != '\0' && *end != 'f')//funzione a parte da scrivere per il parsing
+	/* if (*end != '\0' && *end != 'f')//funzione a parte da scrivere per il parsing
 	{
 		std::cerr << "Invalid literal" << std::endl;
 		return;
-	}
+	} */
 
 	
 	std::string stringChar;

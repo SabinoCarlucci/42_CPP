@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 20:29:53 by scarlucc          #+#    #+#             */
-/*   Updated: 2025/12/22 18:38:07 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/01/12 18:05:11 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,6 +26,7 @@ private:
     ScalarConverter(const ScalarConverter&);
     ScalarConverter& operator=(const ScalarConverter&);
 
+	static bool parseLiteral(std::string literal);
 	static std::string charToString(char c);
 	static std::string intToString(int i);
 	static std::string floatToString(float f);
