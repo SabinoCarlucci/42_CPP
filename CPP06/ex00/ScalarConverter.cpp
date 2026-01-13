@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 20:37:34 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/01/12 18:29:06 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:02:07 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -221,18 +221,18 @@ void ScalarConverter::convert(const std::string& literal)
 		printFloat = static_cast<float>(value);
 		printDouble = static_cast<double>(printFloat);
 
-		if (value < std::numeric_limits<int>::min() ||
+		/* if (value < std::numeric_limits<int>::min() ||
 			value > std::numeric_limits<int>::max() ||
 			std::isnan(value) || std::isinf(value))
 			stringInt = "impossible";
-		else
+		else */
 			printInt = static_cast<int>(value);
 
-		if (value < std::numeric_limits<char>::min() ||
+		/* if (value < std::numeric_limits<char>::min() ||
 			value > std::numeric_limits<char>::max() ||
 			std::isnan(value) || std::isinf(value))
 			stringChar = "impossible";
-		else
+		else */
 			printChar = static_cast<char>(value);
 	}
 	else if (literal.find('.') != std::string::npos)
@@ -242,18 +242,18 @@ void ScalarConverter::convert(const std::string& literal)
 		printDouble = value;
 		printFloat = static_cast<float>(value);
 
-		if (value < std::numeric_limits<int>::min() ||
+		/* if (value < std::numeric_limits<int>::min() ||
 			value > std::numeric_limits<int>::max() ||
 			std::isnan(value) || std::isinf(value))
 			stringInt = "impossible";
-		else
+		else */
 			printInt = static_cast<int>(value);
 
-		if (value < std::numeric_limits<char>::min() ||
+		/* if (value < std::numeric_limits<char>::min() ||
 			value > std::numeric_limits<char>::max() ||
 			std::isnan(value) || std::isinf(value))
 			stringChar = "impossible";
-		else
+		else */
 			printChar = static_cast<char>(value);
 	}
 	else
