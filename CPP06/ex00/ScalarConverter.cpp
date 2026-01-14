@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 20:37:34 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/01/13 14:02:07 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:18:24 by scarlucc         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 #include <sstream>
@@ -98,6 +98,9 @@ bool ScalarConverter::parseLiteral(std::string literal)
 
 	for (size_t counter = 0; counter < literal.length(); counter++)
 	{
+		if (counter == 0 && (literal[0] == '+' || literal[0] == '-'))
+			continue;
+		
 		//literal has more than one . and/or there are no digits before/after .
 		if (literal[counter] == '.')
 		{
@@ -125,6 +128,12 @@ bool ScalarConverter::parseLiteral(std::string literal)
 		}
 
 		//altre lettere o simboli
+		if (!isdigit(literal[counter]))
+		{
+			std::cerr << "Invalid literal: non-digit characters" << std::endl;
+			return (false);
+		}
+			
 	}
 	return true;//literal is ok
 }
@@ -202,14 +211,7 @@ void ScalarConverter::convert(const std::string& literal)
 		return;
 	
 	char* end;
-	double value = std::strtod(literal.c_str(), &end);//converti input in double, poi magari in altri tipi
-
-	/* if (*end != '\0' && *end != 'f')//funzione a parte da scrivere per il parsing
-	{
-		std::cerr << "Invalid literal" << std::endl;
-		return;
-	} */
-
+	double value = std::strtod(literal.c_str(), &end);//input is converted in double first
 	
 	std::string stringChar;
 	std::string stringInt;
@@ -217,23 +219,10 @@ void ScalarConverter::convert(const std::string& literal)
 	if (literal[literal.length() - 1] == 'f' && literal.length() > 1)
 	{
 		//e' un float
-
 		printFloat = static_cast<float>(value);
 		printDouble = static_cast<double>(printFloat);
-
-		/* if (value < std::numeric_limits<int>::min() ||
-			value > std::numeric_limits<int>::max() ||
-			std::isnan(value) || std::isinf(value))
-			stringInt = "impossible";
-		else */
-			printInt = static_cast<int>(value);
-
-		/* if (value < std::numeric_limits<char>::min() ||
-			value > std::numeric_limits<char>::max() ||
-			std::isnan(value) || std::isinf(value))
-			stringChar = "impossible";
-		else */
-			printChar = static_cast<char>(value);
+		printInt = static_cast<int>(value);
+		printChar = static_cast<char>(value);
 	}
 	else if (literal.find('.') != std::string::npos)
 	{
@@ -241,20 +230,8 @@ void ScalarConverter::convert(const std::string& literal)
 
 		printDouble = value;
 		printFloat = static_cast<float>(value);
-
-		/* if (value < std::numeric_limits<int>::min() ||
-			value > std::numeric_limits<int>::max() ||
-			std::isnan(value) || std::isinf(value))
-			stringInt = "impossible";
-		else */
-			printInt = static_cast<int>(value);
-
-		/* if (value < std::numeric_limits<char>::min() ||
-			value > std::numeric_limits<char>::max() ||
-			std::isnan(value) || std::isinf(value))
-			stringChar = "impossible";
-		else */
-			printChar = static_cast<char>(value);
+		printInt = static_cast<int>(value);
+		printChar = static_cast<char>(value);
 	}
 	else
 	{
