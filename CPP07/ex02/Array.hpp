@@ -6,12 +6,41 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 19:46:20 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/01/17 19:46:43 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/01/19 19:00:21 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
+#include <exception>
+
+template <typename T>
+class Array
+{
+	private:
+		T* 				_data;
+		unsigned int 	_size;
+
+	public:
+		//constructors
+		Array();
+		Array(unsigned int n);
+		Array(const Array &other);
+		
+		//destructor
+		~Array();
+
+		//assignment
+		Array& operator=(const Array& other);
+
+		//access
+		T& operator[](unsigned int index);
+		const T& operator[](unsigned int index) const;
+
+		unsigned int size() const;
+};
+
+#include "Array.tpp" //always after class
 
 #endif
