@@ -1,9 +1,9 @@
-NAME = template
+NAME = containers
 
 CXX = c++
 CXXFLAGS =  -Wall -Wextra -Werror -std=c++98 -Iincludes -g -D_GLIBCXX_DEBUG#flag per debuggare
 
-SRC 	= main.cpp easyfind.cpp 
+SRC 	= main.cpp 
 OBJ 	= $(SRC:.cpp=.o)
 
 
