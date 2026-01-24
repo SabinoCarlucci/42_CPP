@@ -1,4 +1,4 @@
-NAME = template
+NAME = container
 
 CXX = c++
 CXXFLAGS =  -Wall -Wextra -Werror -std=c++98 -Iincludes -g -D_GLIBCXX_DEBUG#flag per debuggare
