@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 17:23:01 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/01/23 13:19:41 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/01/28 18:55:48 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -56,6 +56,11 @@ int main(void)
 
 		easyfind(dq, 11);
 		std::cout << "dq Value found :)" << std::endl;
+
+		std::cout << std::endl;
+		std::cout << "exception" << std::endl;
+		easyfind(vect, 999);
+		std::cout << "you can't see me" << std::endl;
 		
 	}
 	catch(const std::exception& e)
