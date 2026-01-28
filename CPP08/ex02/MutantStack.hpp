@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 16:00:30 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/01/27 16:59:28 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/01/28 17:40:52 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -36,19 +36,19 @@ class MutantStack : public std::stack<T>
 	typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator;
 	
 
-	iterator begin() {return this->c.begin();}
-	iterator end() {return this->c.end();}
+	iterator begin() {return this->c.begin();} //begin() e' primo elemento inserito, quello in fondo a stack, anche se LIFO
+	iterator end() {return this->c.end();}//dopo ultimo elemento, non su ultimo
 
 	const_iterator begin() const {return this->c.begin();}
 	const_iterator end() const {return this->c.end();}
 
-	reverse_iterator rbegin() {return this->c.rbegin();}
-	reverse_iterator rend() {return this->c.rend();}
+	reverse_iterator rbegin() {return this->c.rbegin();}//ultimo elemento inserito, cima stack
+	reverse_iterator rend() {return this->c.rend();}//posizione prima di primo elemento inserito, fondo stack
 
 	const_reverse_iterator rbegin() const {return this->c.rbegin();}
 	const_reverse_iterator rend() const {return this->c.rend();}
 
-	//c e' un membro dipendente del template base
+	//'c' e' un membro dipendente del template base
 };
 
 #endif
