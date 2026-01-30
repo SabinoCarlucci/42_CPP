@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:48:46 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/01/24 19:18:52 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/01/30 12:42:24 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,7 +31,19 @@ class Span
 		Span &operator=(const Span &span);
 		
 		void addNumber(int intToAdd);
-		void wonderfulAddNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+		
+		template <typename iter>
+		void wonderfulAddNumber(iter begin, iter end)
+		{
+			size_t distance = std::distance(begin, end);
+
+			if (_numbers.size() + distance > _maxSize)
+				throw ContainerAlreadyFullException();
+
+			//v.insert(pos, first, last);   // Insert range of elements 
+			_numbers.insert(_numbers.end(), begin, end);
+		}
+		
 		unsigned int shortestSpan();
 		unsigned int longestSpan();
 

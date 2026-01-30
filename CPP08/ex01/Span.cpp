@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:49:51 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/01/24 19:43:24 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/01/30 12:41:14 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,19 +44,6 @@ void Span::addNumber(int intToAdd)
 	this->_numbers.push_back(intToAdd);
 }
 
-void Span::wonderfulAddNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
-{
-    size_t distance = std::distance(begin, end);
-
-    if (_numbers.size() + distance > _maxSize)
-        throw ContainerAlreadyFullException();
-
-	//v.insert(pos, first, last);   // Insert range of elements 
-    _numbers.insert(_numbers.end(), begin, end);
-}
-
-
-
 
 unsigned int Span::shortestSpan()
 {
@@ -66,13 +53,12 @@ unsigned int Span::shortestSpan()
 	std::vector<int> workCopy(this->_numbers);
 	std::sort(workCopy.begin(), workCopy.end());
 
-	//unsigned int span = std::numeric_limits<int>::max();
-	unsigned int span = _numbers[1] - _numbers[0];
+	unsigned int span = workCopy[1] - workCopy[0];
 	unsigned int workSpan;
 	
-	for (unsigned int i = 0; i < (_numbers.size() - 1); i++)
+	for (unsigned int i = 0; i < (workCopy.size() - 1); i++)
 	{
-		workSpan = _numbers[i + 1] - _numbers[i];
+		workSpan = workCopy[i + 1] - workCopy[i];
 		if (workSpan < span)
 			span = workSpan;
 	}
