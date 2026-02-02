@@ -1,31 +1,28 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/01 19:24:02 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/02 17:46:02 by scarlucc         ###   ########.fr       */
+/*   Created: 2026/02/02 13:39:22 by scarlucc          #+#    #+#             */
+/*   Updated: 2026/02/02 17:25:22 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef BITCOINEXCHANGE_HPP
-#define BITCOINEXCHANGE_HPP
+#include "BitcoinExchange.hpp"
 
-#include <map>
-#include <string>
-#include <iostream>
-
-class BitcoinExchange
+int main(int argc, char **argv)
 {
-	private:
-		std::map<std::string, double> _db;
+	//(void)argv;//poi togli
+	if (argc != 2)
+	{
+		std::cerr << "Usage: ./btc <filename>" << std::endl;
+		return (1);
+	}
+	//mettere try
+	BitcoinExchange bitcoinexchange;//cambiare costruttore con argomento
 
-	public:
-		BitcoinExchange();
-
-		void processInput(const std::string &filename);
-};
-
-#endif
+	bitcoinexchange.processInput(argv[1]);
+	return (0);
+}
