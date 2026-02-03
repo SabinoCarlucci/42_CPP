@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:24:02 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/02 17:46:02 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:40:16 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,6 +26,7 @@ class BitcoinExchange
 		BitcoinExchange();
 
 		void processInput(const std::string &filename);
+		bool is_numeric(const std::string& s);
 };
 
 #endif
