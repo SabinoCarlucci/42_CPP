@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:23:42 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/04 14:18:16 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:33:59 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,7 +16,7 @@
 #include <cctype> // isspace() for parsing
 #include <sstream> //parsing month and day
 
-BitcoinExchange::BitcoinExchange()
+void BitcoinExchange::load_database()
 {
 	std::ifstream db_csv("data.csv");//load database
 	if (!db_csv.is_open())
@@ -42,6 +42,34 @@ BitcoinExchange::BitcoinExchange()
 	}
 }
 
+BitcoinExchange::BitcoinExchange()
+{
+	this->load_database();
+}
+
+BitcoinExchange::BitcoinExchange(const std::string &filename)
+{
+	this->load_database();
+	this->processInput(filename);
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) : _db(other._db)
+{
+	
+}
+
+BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange other)
+{
+	if (this != &other)
+		std::swap(this->_db, other._db);
+	return *this;
+}
+
+BitcoinExchange::~BitcoinExchange()
+{
+	
+}
+
 void BitcoinExchange::processInput(const std::string &filename)
 {
 	std::ifstream file(filename.c_str());//load file
@@ -51,21 +79,20 @@ void BitcoinExchange::processInput(const std::string &filename)
 		return;
 	}
 
-	//che succede se file vuoto?
 	std::string line;
 	std::getline(file, line); //skip file header
 
 	std::string date;
 	std::string year;
-	size_t hyphen;//between year and month
+	size_t		hyphen;//between year and month
 	std::string month;
 	int 		monthInt;
-	size_t hyphenMonth;//between month and day
+	size_t 		hyphenMonth;//between month and day
 	std::string day;
 	int			dayInt;
 	std::string value;
-	double amount; //converted value
-	char *end; //first non converted char
+	double 		amount; //converted value
+	char 		*end; //first non converted char
 	
 
 	while (std::getline(file, line))
@@ -73,12 +100,12 @@ void BitcoinExchange::processInput(const std::string &filename)
 		size_t pipe = line.find('|');
 		if (pipe == std::string::npos)
 		{
-			std::cout << "Error: bad input (missing '|') => " << line << std::endl;
+			std::cerr << "Error: bad input (missing '|') => " << line << std::endl;
 			continue;
 		}
 		if (pipe == 0 || !isspace(line[pipe - 1]) || !isspace(line[pipe + 1]))
 		{
-			std::cout << "Error: bad input (missing space around '|') => " << line << std::endl;
+			std::cerr << "Error: bad input (missing space around '|') => " << line << std::endl;
 			continue;
 		}
 		
@@ -88,27 +115,27 @@ void BitcoinExchange::processInput(const std::string &filename)
 		hyphen = date.find('-');
 		if (hyphen == std::string::npos)
 		{
-			std::cout << "Error: bad input (missing '-') => " << line << std::endl;
+			std::cerr << "Error: bad input (missing '-') => " << line << std::endl;
 			continue;
 		}
 		year = date.substr(0, hyphen);
 		if (!is_numeric(year))
 		{
-			std::cout << "Error: bad input (year) => " << line << std::endl;
+			std::cerr << "Error: bad input (year) => " << line << std::endl;
 			continue;
 		}
 
 		hyphenMonth = date.find('-', hyphen + 1);
 		if (hyphenMonth == std::string::npos)
 		{
-			std::cout << "Error: bad input (missing '-') => " << line << std::endl;
+			std::cerr << "Error: bad input (missing '-') => " << line << std::endl;
 			continue;
 		}
 		month = date.substr(hyphen + 1, hyphenMonth - hyphen - 1);
 		monthInt = std::atoi(month.c_str());
 		if (!is_numeric(month) || monthInt < 1 || monthInt > 12)
 		{
-			std::cout << "Error: bad input (month) => " << line << std::endl;
+			std::cerr << "Error: bad input (month) => " << line << std::endl;
 			continue;
 		}
 		
@@ -116,7 +143,7 @@ void BitcoinExchange::processInput(const std::string &filename)
 		dayInt = std::atoi(day.c_str());
 		if (!is_numeric(day) || dayInt < 1 || dayInt > 31)
 		{
-			std::cout << "Error: bad input (day) => " << line << std::endl;
+			std::cerr << "Error: bad input (day) => " << line << std::endl;
 			continue;
 		}
 
@@ -128,23 +155,25 @@ void BitcoinExchange::processInput(const std::string &filename)
 
 		if (*end != '\0') //no spaces after value
 		{
-			std::cout << "Error: bad input (value) => " << line << std::endl;
+			std::cerr << "Error: bad input (value) => " << line << std::endl;
 			continue;
 		}
 
 		if (amount < 0)
 		{
-			std::cout << "Error: negative number => " << line << std::endl;
+			std::cerr << "Error: negative number => " << line << std::endl;
 			continue;
 		}
 
 		if (amount > 1000)
 		{
-			std::cout << "Error: too large a number => " << line << std::endl;
+			std::cerr << "Error: too large a number => " << line << std::endl;
 			continue;
 		}
 
 		//std::cout << "value: " << value << " int value: " << amount << std::endl;//debugging, comment later
+		convert(line, date, amount);
+		
 	}
 }
 
@@ -153,4 +182,22 @@ bool BitcoinExchange::is_numeric(const std::string& s) {
         if (!::isdigit(*it)) return false;
     }
     return !s.empty();
+}
+
+void BitcoinExchange::convert(std::string line, std::string date, double amount)
+{
+	double result;
+	
+	std::map<std::string, double>::iterator it = _db.lower_bound(date);
+	if (it == _db.begin())
+	{
+		std::cerr << "Error: date too early or too late => " << line << std::endl;
+		return;
+	}
+	if (it != _db.end() && it->first != date)
+		--it;	
+	
+	result = amount * it->second;
+	//format 2011-01-03 => 3 = 0.9
+	std::cout << date << " => " << amount << " = " << result << std::endl;
 }
