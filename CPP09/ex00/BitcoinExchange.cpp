@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:23:42 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/03 19:44:19 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:18:16 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -56,12 +56,16 @@ void BitcoinExchange::processInput(const std::string &filename)
 	std::getline(file, line); //skip file header
 
 	std::string date;
-	std::string value;
 	std::string year;
+	size_t hyphen;//between year and month
 	std::string month;
 	int 		monthInt;
+	size_t hyphenMonth;//between month and day
 	std::string day;
 	int			dayInt;
+	std::string value;
+	double amount; //converted value
+	char *end; //first non converted char
 	
 
 	while (std::getline(file, line))
@@ -74,15 +78,14 @@ void BitcoinExchange::processInput(const std::string &filename)
 		}
 		if (pipe == 0 || !isspace(line[pipe - 1]) || !isspace(line[pipe + 1]))
 		{
-			std::cout << "Error: bad input (missing  space around '|') => " << line << std::endl;
+			std::cout << "Error: bad input (missing space around '|') => " << line << std::endl;
 			continue;
 		}
 		
 		//check date
 		date = line.substr(0, pipe - 1);
-		value = line.substr(pipe + 2); //if missing check later
 		
-		size_t hyphen = date.find('-');
+		hyphen = date.find('-');
 		if (hyphen == std::string::npos)
 		{
 			std::cout << "Error: bad input (missing '-') => " << line << std::endl;
@@ -95,7 +98,7 @@ void BitcoinExchange::processInput(const std::string &filename)
 			continue;
 		}
 
-		size_t hyphenMonth = date.find('-', hyphen + 1);
+		hyphenMonth = date.find('-', hyphen + 1);
 		if (hyphenMonth == std::string::npos)
 		{
 			std::cout << "Error: bad input (missing '-') => " << line << std::endl;
@@ -116,13 +119,33 @@ void BitcoinExchange::processInput(const std::string &filename)
 			std::cout << "Error: bad input (day) => " << line << std::endl;
 			continue;
 		}
-		
-		std::cout << "hyphenMonth:" << hyphenMonth << " pipe:" << pipe + 1 << std::endl;//debugging
 
 		
 		//check value
+		value = line.substr(pipe + 2);
+		//char *end; //first non converted char
+		amount = std::strtod(value.c_str(), &end);
+
+		if (*end != '\0') //no spaces after value
+		{
+			std::cout << "Error: bad input (value) => " << line << std::endl;
+			continue;
+		}
+
+		if (amount < 0)
+		{
+			std::cout << "Error: negative number => " << line << std::endl;
+			continue;
+		}
+
+		if (amount > 1000)
+		{
+			std::cout << "Error: too large a number => " << line << std::endl;
+			continue;
+		}
+
+		//std::cout << "value: " << value << " int value: " << amount << std::endl;//debugging, comment later
 	}
-	
 }
 
 bool BitcoinExchange::is_numeric(const std::string& s) {
