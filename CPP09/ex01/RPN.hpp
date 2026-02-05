@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:10:58 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/04 19:11:27 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/05 17:13:52 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,17 +15,43 @@
 
 #include <stack>
 #include <iostream>
+#include <sstream>
 
-class rpn
+class Rpn
 {
 	private:
-		//std::stack
+		std::stack<int> _st;
 	
 	public:
-		rpn();
-		rpn(const rpn &other);
-		rpn &operator=(rpn other);
-		~rpn();
+		Rpn();
+		Rpn(const std::string &expression);//construct and execute
+		Rpn(const Rpn &other);
+		Rpn &operator=(Rpn other);
+		~Rpn();
+
+	class WrongInputException : public std::exception
+	{
+	public:
+		const char *what() const throw();
+	};
+
+	class NotEnoughOperandsException : public std::exception
+	{
+	public:
+		const char *what() const throw();
+	};
+
+	class DivisionByZeroException : public std::exception
+	{
+	public:
+		const char *what() const throw();
+	};
+
+	class TooManyOperandsException : public std::exception
+	{
+	public:
+		const char *what() const throw();
+	};
 };
 
 #endif
