@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:11:30 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/05 17:59:43 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:29:29 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -53,7 +53,7 @@ Rpn::Rpn(const std::string &expression)
 	
 	while(ss >> token)
 	{
-		if (token.length() == 1 && std::isdigit(token[0]))//serve fare anche numeri negativi?
+		if (token.length() == 1 && std::isdigit(token[0]))
 			_st.push(token[0] - '0');
 		else if (token == "+" || token == "-" || token == "*" || token == "/")
 		{
