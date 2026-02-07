@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:20:04 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/06 19:31:20 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/07 19:03:02 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,14 +22,15 @@ PmergeMe::PmergeMe(char **argv)
 
 	// ===== VECTOR =====
 	struct timeval start_vec, end_vec;
-	gettimeofday(&start_vec, NULL);
+	std::vector<int> mergeVector;
+	gettimeofday(&start_vec, NULL);//start timer
 
-	fillVector(argv);
-	sortVector();
+	//std::cout << "ciaone" << std::endl;
+	sortVector(argv, mergeVector);
 
-	gettimeofday(&end_vec, NULL);
+	gettimeofday(&end_vec, NULL);//stop timer
 
-	printVectorTime(start_vec, end_vec);
+	printTime(start_vec, end_vec, mergeVector.size(), "std::vector");
 
 	/* // ===== DEQUE =====
 	struct timeval start_deq, end_deq;
@@ -65,6 +66,14 @@ void PmergeMe::parseInput(char **argv)
 	}
 }
 
+void PmergeMe::sortVector(char **argv, std::vector<int> mergeVector)
+{
+	while ()
+	{
+		//aggiungi numeri a vector
+	}
+}
+
 void PmergeMe::printBefore(char **argv)
 {
 	std::cout << "Before: ";
@@ -73,6 +82,19 @@ void PmergeMe::printBefore(char **argv)
 	std::cout << std::endl;
 }
 
+void PmergeMe::printTime(struct timeval start, struct timeval end, size_t n_elements, std::string container)
+{
+	double time_elapsed = ((end.tv_sec - start.tv_sec) * 1e6) + (end.tv_usec - start.tv_usec);
+	
+	std::cout << "Time to process a range of "
+			  << n_elements
+			  << " elements with "
+			  << container
+			  << " : " 
+			  << time_elapsed
+			  << " us" 
+			  << std::endl;
+}
 
 const char *PmergeMe::NotPositiveIntegerException::what() const throw()
 {
