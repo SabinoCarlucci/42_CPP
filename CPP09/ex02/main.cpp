@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:20:22 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/06 19:04:20 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/08 12:34:08 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 
 	try
 	{
-		PmergeMe sorter(argv + 1);
+		PmergeMe sorter(argc - 1, argv + 1); //skip program name
 	}
 	catch (const std::exception &e)
 	{

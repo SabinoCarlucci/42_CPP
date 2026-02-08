@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:20:04 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/07 19:03:02 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/08 19:11:36 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,22 +15,22 @@
 #include <cstdlib>
 #include <climits>
 
-PmergeMe::PmergeMe(char **argv)
+PmergeMe::PmergeMe(int argc, char **argv)
 {
 	parseInput(argv);
 	printBefore(argv);
 
 	// ===== VECTOR =====
 	struct timeval start_vec, end_vec;
-	std::vector<int> mergeVector;
+	//std::vector<int> mergeVector;
 	gettimeofday(&start_vec, NULL);//start timer
 
 	//std::cout << "ciaone" << std::endl;
-	sortVector(argv, mergeVector);
+	sortVector(argc, argv);
 
 	gettimeofday(&end_vec, NULL);//stop timer
 
-	printTime(start_vec, end_vec, mergeVector.size(), "std::vector");
+	printTime(start_vec, end_vec, _vec.size(), "std::vector");
 
 	/* // ===== DEQUE =====
 	struct timeval start_deq, end_deq;
@@ -66,13 +66,63 @@ void PmergeMe::parseInput(char **argv)
 	}
 }
 
-void PmergeMe::sortVector(char **argv, std::vector<int> mergeVector)
+void PmergeMe::sortVector(int argc, char **argv)
 {
-	while ()
+	long temp;
+	//char *endPointer;
+	
+	for (int it = 0; it < argc; it++) //from main passing argv + 1
 	{
-		//aggiungi numeri a vector
+		temp = std::strtol(argv[it], NULL, 10);
+		_vec.push_back(temp);
 	}
+	
+	//stampa per debug, cancella dopo
+	std::cout << std::endl;
+	std::cout << "_vect: ";
+	for (size_t it = 0; it < _vec.size(); it++)
+	{
+		std::cout << _vec[it] << " ";
+	}
+	std::cout << std::endl;
+
+	//funzione ricorsiva qui con stampa di coppie tra [] es: [3 2] [56 123] ... 11
+	int increment = 2;
+	recursion(increment);
+
+	
 }
+
+void PmergeMe::recursion(int increment)
+{	
+	std::vector<int>::iterator it = _vec.begin();
+	while (it != _vec.end())
+	{
+		std::cout << "[ ";
+		if (std::distance(it, _vec.end()) > increment)
+		{
+			for (int repeat = 0; repeat < increment; repeat++)
+			{
+				std::cout << *it << " ";//forse cambiare contenuto di questo ciclo
+				it ++;
+			}
+		}
+		else
+		{
+			while (it != _vec.end())
+			{
+				std::cout << *it << " ";
+				it++;
+			}			
+		}
+		std::cout << "] " << std::endl;	
+	}
+	std::cout << std::endl;
+	increment *= 2;
+	if (std::distance(_vec.begin(), _vec.end()) > increment)
+		recursion(increment);
+}
+
 
 void PmergeMe::printBefore(char **argv)
 {

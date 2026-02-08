@@ -6,13 +6,14 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:19:19 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/07 17:48:13 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/08 18:38:31 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
+#include <iterator> //std::distance() to check if next group can be formed
 #include <vector>
 #include <deque>
 #include <sys/time.h> //gettimeofday()
@@ -29,10 +30,11 @@ class PmergeMe
 		void parseInput(char **argv);
 		void printBefore(char **argv);
 		void printTime(struct timeval start, struct timeval end, size_t n_elements, std::string container);
-		void sortVector(char **argv, std::vector<int> mergeVector);
+		void sortVector(int argc, char **argv);
+		void recursion(int increment);
 		
 	public:
-		PmergeMe(char **argv);
+		PmergeMe(int argc, char **argv);
 
 	
 	class NotPositiveIntegerException : public std::exception
