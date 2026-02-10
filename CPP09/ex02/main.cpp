@@ -6,11 +6,16 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:20:22 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/08 12:34:08 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/10 17:05:17 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "PmergeMe.hpp"
+
+/* 
+test with:
+./PmergeMe `shuf -i 1-100000 -n 3000 | tr '\n' ' '`
+ */
 
 int main(int argc, char **argv)
 {

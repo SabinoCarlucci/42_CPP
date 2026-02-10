@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:19:19 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/08 18:38:31 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/10 17:22:46 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,13 +16,14 @@
 #include <iterator> //std::distance() to check if next group can be formed
 #include <vector>
 #include <deque>
+#include <algorithm> //for swap_ranges()
 #include <sys/time.h> //gettimeofday()
 #include <string>
 #include <iostream>
 #include <sstream>
 
 
-class PmergeMe
+class PmergeMe //aggiungi standard orthodox
 {
 	private:
 		std::vector<int> _vec;
@@ -31,7 +32,7 @@ class PmergeMe
 		void printBefore(char **argv);
 		void printTime(struct timeval start, struct timeval end, size_t n_elements, std::string container);
 		void sortVector(int argc, char **argv);
-		void recursion(int increment);
+		void recursion(int group_size);
 		
 	public:
 		PmergeMe(int argc, char **argv);

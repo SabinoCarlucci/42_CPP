@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:20:04 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/08 19:11:36 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/10 18:09:54 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,7 +44,7 @@ PmergeMe::PmergeMe(int argc, char **argv)
 	printDequeTime(start_deq, end_deq); */
 }
 
-void PmergeMe::parseInput(char **argv)
+void PmergeMe::parseInput(char **argv) //aggiungi controllo per duplicati
 {
 	for (int i = 0; argv[i]; ++i)
 	{
@@ -61,7 +61,7 @@ void PmergeMe::parseInput(char **argv)
 
 		long value = std::strtol(s.c_str(), NULL, 10);
 
-		if (value <= 0 || value > INT_MAX)
+		if (value < 0 || value > INT_MAX)
 			throw NotPositiveIntegerException();
 	}
 }
@@ -87,24 +87,27 @@ void PmergeMe::sortVector(int argc, char **argv)
 	std::cout << std::endl;
 
 	//funzione ricorsiva qui con stampa di coppie tra [] es: [3 2] [56 123] ... 11
-	int increment = 2;
-	recursion(increment);
+	int group_size = 1;
+	recursion(group_size);
 
 	
 }
 
-void PmergeMe::recursion(int increment)
+//./PmergeMe 2 11 0 17 6 15 8 16 3 10 1 21 9 18 14 19 5 12 4 20 7 13
+void PmergeMe::recursion(int group_size)
 {	
 	std::vector<int>::iterator it = _vec.begin();
 	while (it != _vec.end())
 	{
 		std::cout << "[ ";
-		if (std::distance(it, _vec.end()) > increment)
+		if (std::distance(it, _vec.end()) >= group_size) //>= invece di >
 		{
-			for (int repeat = 0; repeat < increment; repeat++)
+			if (group_size > 1 && *(it + (group_size / 2) - 1) > *(it + group_size - 1))
+				std::swap_ranges(it, it + group_size / 2, it + group_size / 2);
+			for (int repeat = 0; repeat < group_size; repeat++)
 			{
 				std::cout << *it << " ";//forse cambiare contenuto di questo ciclo
-				it ++;
+				it++;
 			}
 		}
 		else
@@ -118,9 +121,15 @@ void PmergeMe::recursion(int increment)
 		std::cout << "] " << std::endl;	
 	}
 	std::cout << std::endl;
-	increment *= 2;
-	if (std::distance(_vec.begin(), _vec.end()) > increment)
-		recursion(increment);
+	group_size *= 2;
+	if (std::distance(_vec.begin(), _vec.end()) > group_size)
+		recursion(group_size);
+	
+	//main e pend e resto di cose
+	/* cerca
+	Step 3 can be pretty confusing.
+	
+	*/
 }
 
 
