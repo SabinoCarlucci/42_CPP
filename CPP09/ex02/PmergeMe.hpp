@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:19:19 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/10 17:22:46 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/12 19:20:20 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,12 +27,15 @@ class PmergeMe //aggiungi standard orthodox
 {
 	private:
 		std::vector<int> _vec;
+		std::vector<int> _vecPend;
 		std::deque<int> _deq;
 		void parseInput(char **argv);
 		void printBefore(char **argv);
 		void printTime(struct timeval start, struct timeval end, size_t n_elements, std::string container);
 		void sortVector(int argc, char **argv);
 		void recursion(int group_size);
+		void makeElements(int group_size);
+		void makeMainPend(int group_size);
 		
 	public:
 		PmergeMe(int argc, char **argv);

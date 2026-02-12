@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:20:04 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/10 18:09:54 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/12 19:26:55 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -77,30 +77,25 @@ void PmergeMe::sortVector(int argc, char **argv)
 		_vec.push_back(temp);
 	}
 	
-	//stampa per debug, cancella dopo
-	std::cout << std::endl;
-	std::cout << "_vect: ";
+	//debug print
+	/* std::cout << std::endl << "_vect: ";
 	for (size_t it = 0; it < _vec.size(); it++)
 	{
 		std::cout << _vec[it] << " ";
 	}
-	std::cout << std::endl;
-
-	//funzione ricorsiva qui con stampa di coppie tra [] es: [3 2] [56 123] ... 11
+	std::cout << std::endl; */
+	
 	int group_size = 1;
 	recursion(group_size);
-
-	
 }
 
-//./PmergeMe 2 11 0 17 6 15 8 16 3 10 1 21 9 18 14 19 5 12 4 20 7 13
-void PmergeMe::recursion(int group_size)
-{	
+void PmergeMe::makeElements(int group_size)
+{
 	std::vector<int>::iterator it = _vec.begin();
 	while (it != _vec.end())
 	{
 		std::cout << "[ ";
-		if (std::distance(it, _vec.end()) >= group_size) //>= invece di >
+		if (std::distance(it, _vec.end()) >= group_size)
 		{
 			if (group_size > 1 && *(it + (group_size / 2) - 1) > *(it + group_size - 1))
 				std::swap_ranges(it, it + group_size / 2, it + group_size / 2);
@@ -121,14 +116,55 @@ void PmergeMe::recursion(int group_size)
 		std::cout << "] " << std::endl;	
 	}
 	std::cout << std::endl;
+}
+
+void PmergeMe::makeMainPend(int group_size)
+{
+	std::vector<int>::iterator it = _vec.begin();
+	size_t skip = group_size * 2; 
+
+	//forse pulire _vecPend
+	while (it != _vec.end())
+	{
+		long remaining = std::distance(it, _vec.end());
+		
+		if(remaining >= (long)(skip))
+		{
+			_vecPend.insert(_vecPend.end(), it + skip, it + skip + group_size);
+			it += skip;
+		}
+		else if (remaining >= (long)group_size)
+		{
+			_vecPend.insert(_vecPend.end(), it, it + group_size);
+			break;
+		}
+		else
+			break;
+	}
+
+	std::cout << "pend: [ ";
+	for (std::vector<int>::iterator it_pend = _vecPend.begin(); it_pend != _vecPend.end(); it_pend++)
+		std::cout << *it_pend << " ";
+	std::cout << "]" << std::endl << std::endl;
+}
+
+//./PmergeMe 2 11 0 17 6 15 8 16 3 10 1 21 9 18 14 19 5 12 4 20 7 13
+void PmergeMe::recursion(int group_size)
+{
+	makeElements(group_size);
 	group_size *= 2;
 	if (std::distance(_vec.begin(), _vec.end()) > group_size)
 		recursion(group_size);
 	
-	//main e pend e resto di cose
+	//step 2 (main e pend)
+	if (std::distance(_vec.begin(), _vec.end()) / group_size > 2)//if there are 2 groups and odd numbers, no insertion
+	{
+		makeElements(group_size);
+		makeMainPend(group_size);
+		
+	}
 	/* cerca
 	Step 3 can be pretty confusing.
-	
 	*/
 }
 
