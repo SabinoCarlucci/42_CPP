@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:20:04 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/13 19:56:34 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/14 17:45:05 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -89,26 +89,26 @@ void PmergeMe::sortVector(int argc, char **argv)
 	recursion(group_size);
 }
 
-void PmergeMe::printElements(int group_size)//modifica per usarlo su qualunque vettore
+void PmergeMe::printElements(int group_size, std::vector<int> vector_to_print)//modifica per usarlo su qualunque vettore
 {
-	std::vector<int>::iterator it = _vec.begin();
-	while (it != _vec.end())
+	std::vector<int>::iterator it_vec = vector_to_print.begin();
+	while (it_vec != vector_to_print.end())
 	{
 		std::cout << "[ ";
-		if (std::distance(it, _vec.end()) >= group_size)
+		if (std::distance(it_vec, vector_to_print.end()) >= group_size)
 		{
 			for (int repeat = 0; repeat < group_size; repeat++)
 			{
-				std::cout << *it << " ";//forse cambiare contenuto di questo ciclo
-				it++;
+				std::cout << *it_vec << " ";//forse cambiare contenuto di questo ciclo
+				it_vec++;
 			}
 		}
 		else
 		{
-			while (it != _vec.end())
+			while (it_vec != vector_to_print.end())
 			{
-				std::cout << *it << " ";
-				it++;
+				std::cout << *it_vec << " ";
+				it_vec++;
 			}			
 		}
 		std::cout << "] " << std::endl;	
@@ -133,7 +133,7 @@ void PmergeMe::makeElements(int group_size)
 				it++;		
 		}
 	}
-	printElements(group_size);
+	printElements(group_size, _vec);
 }
 
 void PmergeMe::makeMainPend(int group_size)
@@ -197,15 +197,11 @@ void PmergeMe::makeMainPend(int group_size)
 			break;
 	}
 
-	std::cout << "pend: [ ";
-	for (std::vector<int>::iterator it_pend = _vecPend.begin(); it_pend != _vecPend.end(); it_pend++)
-		std::cout << *it_pend << " ";
-	std::cout << "]" << std::endl;
+	std::cout << "pend:" << std::endl;
+	printElements(group_size, _vecPend);
 
-	std::cout << "main: ";
-	for (it = _vec.begin(); it != _vec.end(); it++)
-		std::cout << *it << " ";
-	std::cout << "]" << std::endl << std::endl;
+	std::cout << "main:" << std::endl;;
+	printElements(group_size, _vec);
 }
 
 //./PmergeMe 2 11 0 17 6 15 8 16 3 10 1 21 9 18 14 19 5 12 4 20 7 13
@@ -219,8 +215,10 @@ void PmergeMe::recursion(int group_size)
 	//step 2 (main e pend)
 	if (std::distance(_vec.begin(), _vec.end()) / group_size > 2)//if there are 2 groups and odd numbers, no insertion
 	{
-		printElements(group_size);
+		printElements(group_size, _vec);
 		makeMainPend(group_size);
+		
+		//implementing step 3
 		
 	}
 	/* cerca
