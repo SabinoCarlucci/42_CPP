@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:19:19 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/14 13:44:09 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:30:33 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,6 +37,7 @@ class PmergeMe //aggiungi standard orthodox
 		void printElements(int group_size, std::vector<int> vector_to_print);
 		void makeElements(int group_size);
 		void makeMainPend(int group_size);
+		void binaryJacobsthalInsert(int group_size);
 		
 	public:
 		PmergeMe(int argc, char **argv);

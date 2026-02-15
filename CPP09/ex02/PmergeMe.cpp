@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:20:04 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/14 17:45:05 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:51:17 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -219,13 +219,33 @@ void PmergeMe::recursion(int group_size)
 		makeMainPend(group_size);
 		
 		//implementing step 3
-		
+		binaryJacobsthalInsert(group_size);
 	}
 	/* cerca
 	Step 3 can be pretty confusing.
 	*/
 }
 
+void PmergeMe::binaryJacobsthalInsert(int group_size)
+{
+	int pend_blocks = _vecPend.size() / group_size;//8 / 4 = 2
+
+	//int previousJ = 1;
+	int currentJ = 3;
+	
+	std::vector<int>::iterator itPend = _vecPend.begin();
+	std::vector<int>::iterator itMain = _vec.begin();
+	
+	if (pend_blocks >= currentJ - 1)//se ci sono abbastanza elementi in pend
+		itPend = itPend + group_size * (currentJ - 1) - 1;
+	else
+		itPend = _vecPend.end() - 1;
+
+	//con quale numero va confrontato? ricerca binaria
+	//limite in base a 
+		
+	//ricalcola jacob
+}
 
 void PmergeMe::printBefore(char **argv)
 {
