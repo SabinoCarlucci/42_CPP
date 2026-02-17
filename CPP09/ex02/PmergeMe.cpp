@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:20:04 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/16 19:07:13 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/17 21:10:22 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -226,35 +226,39 @@ void PmergeMe::recursion(int group_size)
 	*/
 }
 
-void PmergeMe::binaryJacobsthalInsert(int group_size)
+/* void PmergeMe::binaryJacobsthalInsert(int group_size)
 {
-	int pend_blocks = _vecPend.size() / group_size;//8 / 4 = 2
-	/* std::vector<int> jacob;
+	int pend_blocks = _vecPend.size() / group_size;
+	if (pend_blocks == 0)
+		return;
+	
+	std::vector<int> jacob;
 	jacob.push_back(1);
 	jacob.push_back(3);
-	while (jacob.size() < pend_blocks)
+	while (jacob.back() < pend_blocks + 1)
 	{
 		int newJ = *(jacob.end() - 1) + *(jacob.end() - 2) * 2;
 		jacob.push_back(newJ);
 	}
-		 */
 	
-
-	int previousJ = 1;
-	int currentJ = 3;
+	std::vector<int>::iterator itJacob = jacob.begin() + 1;
+	std::vector<int>::reverse_iterator itPend = _vecPend.rend() - *itJacob * group_size;
+	std::vector<int>::reverse_iterator itPendLimit = _vecPend.rend();
 	
-	std::vector<int>::iterator itPend;
-	std::vector<int>::iterator itMain = _vec.begin();
-	
-	for (int cont = 1; cont < currentJ - previousJ; cont++)
-	{
-		for (int loopJ = currentJ; loopJ > previousJ; loopJ--)
+	while (itJacob != jacob.end())
+	{		
+		//for (int loopJ = currentJ; loopJ > previousJ; loopJ--)
+		for ( ; itPend > itPendLimit; itPend++)
 		{
-				std::cout << "loopJ: " << loopJ << std::endl;
-			if (pend_blocks >= currentJ - 1)//se ci sono abbastanza elementi in pend
-				itPend = _vecPend.begin() + group_size * (loopJ - 1) - 1;//point to element's last number
+				std::cout << "itPend: " << *itPend << std::endl;
+			if (pend_blocks >= *(itJacob - 1))
+				itPend = _vecPend.rend() - *itJacob * group_size + 1;
 			else
-				itPend = _vecPend.end() - 1;				
+				itPend = _vecPend.rbegin();
+			if (*(itJacob - 1) == 1)
+				itPendLimit = _vecPend.rend();
+			else
+				itPendLimit = _vecPend.rend() - *(itJacob - 1)  * group_size;	
 
 			int insertionIndex = findInsertPosition(itPend, group_size);
 				std::cout << "itPend: " << *itPend << std::endl;
@@ -269,14 +273,64 @@ void PmergeMe::binaryJacobsthalInsert(int group_size)
 		}
 		
 		//ricalcola jacob
-		int tmpJ = currentJ;
-		currentJ = currentJ + previousJ * 2;
-		previousJ = tmpJ;
+		itJacob += 1;
 	}
+} */
+
+void PmergeMe::binaryJacobsthalInsert(int group_size)
+{
+    int pend_blocks = _vecPend.size() / group_size;
+    if (pend_blocks == 0)
+        return;
+
+    // 1️⃣ Costruzione Jacobsthal
+    std::vector<int> jacob;
+    jacob.push_back(1);
+    jacob.push_back(3);
+
+    while (jacob.back() < pend_blocks)
+    {
+        int size = jacob.size();
+        int newJ = jacob[size - 1] + 2 * jacob[size - 2];
+        jacob.push_back(newJ);
+    }
+
+    int previous = 0;
+
+    // 2️⃣ Inserimento secondo Jacobsthal
+    for (size_t j = 0; j < jacob.size(); j++)
+    {
+        int current = jacob[j];
+
+        if (current > pend_blocks)
+            current = pend_blocks;
+
+        // inserisci blocchi da current-1 fino a previous
+        for (int block = current - 1; block >= previous; block--)
+        {
+            int start = block * group_size;
+            int end   = start + group_size;
+
+            // trova posizione in main
+            int insertionIndex = findInsertPosition(start, group_size);
+
+            // inserisci blocco intero
+            _vec.insert(
+                _vec.begin() + insertionIndex * group_size,
+                _vecPend.begin() + start,
+                _vecPend.begin() + end
+            );
+        }
+
+        previous = jacob[j];
+        if (previous >= pend_blocks)
+            break;
+    }
 }
 
+
 int PmergeMe::findInsertPosition(
-    std::vector<int>::iterator itPend,
+    std::vector<int>::reverse_iterator itPend,
     int group_size)
 {
     int left = 0;

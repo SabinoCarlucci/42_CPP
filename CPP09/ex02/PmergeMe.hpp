@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:19:19 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/16 15:08:35 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/17 19:14:52 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,7 +28,6 @@ class PmergeMe //aggiungi standard orthodox
 	private:
 		std::vector<int> _vec;
 		std::vector<int> _vecPend;
-		std::vector<int> _vecBoundary;
 		std::deque<int> _deq;
 		void parseInput(char **argv);
 		void printBefore(char **argv);
@@ -39,7 +38,7 @@ class PmergeMe //aggiungi standard orthodox
 		void makeElements(int group_size);
 		void makeMainPend(int group_size);
 		void binaryJacobsthalInsert(int group_size);
-		int findInsertPosition(std::vector<int>::iterator itPend, int group_size);
+		int findInsertPosition(std::vector<int>::reverse_iterator itPend, int group_size);
 		
 	public:
 		PmergeMe(int argc, char **argv);
