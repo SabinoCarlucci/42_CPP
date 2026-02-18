@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:20:04 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/17 21:10:22 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/18 09:36:17 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,6 +31,7 @@ PmergeMe::PmergeMe(int argc, char **argv)
 	gettimeofday(&end_vec, NULL);//stop timer
 
 	printTime(start_vec, end_vec, _vec.size(), "std::vector");
+	printElements(1, _vec);//debug
 
 	/* // ===== DEQUE =====
 	struct timeval start_deq, end_deq;
@@ -133,7 +134,7 @@ void PmergeMe::makeElements(int group_size)
 				it++;		
 		}
 	}
-	printElements(group_size, _vec);
+	printElements(group_size, _vec);//debug
 }
 
 void PmergeMe::makeMainPend(int group_size)
@@ -208,9 +209,9 @@ void PmergeMe::makeMainPend(int group_size)
 void PmergeMe::recursion(int group_size)
 {
 	makeElements(group_size);
-	group_size *= 2;
+	//group_size *= 2;
 	if (std::distance(_vec.begin(), _vec.end()) > group_size)
-		recursion(group_size);
+		recursion(group_size * 2);		
 	
 	//step 2 (main e pend)
 	if (std::distance(_vec.begin(), _vec.end()) / group_size > 2)//if there are 2 groups and odd numbers, no insertion
@@ -221,9 +222,6 @@ void PmergeMe::recursion(int group_size)
 		//implementing step 3
 		binaryJacobsthalInsert(group_size);
 	}
-	/* cerca
-	Step 3 can be pretty confusing.
-	*/
 }
 
 /* void PmergeMe::binaryJacobsthalInsert(int group_size)
@@ -283,7 +281,6 @@ void PmergeMe::binaryJacobsthalInsert(int group_size)
     if (pend_blocks == 0)
         return;
 
-    // 1️⃣ Costruzione Jacobsthal
     std::vector<int> jacob;
     jacob.push_back(1);
     jacob.push_back(3);
@@ -297,7 +294,6 @@ void PmergeMe::binaryJacobsthalInsert(int group_size)
 
     int previous = 0;
 
-    // 2️⃣ Inserimento secondo Jacobsthal
     for (size_t j = 0; j < jacob.size(); j++)
     {
         int current = jacob[j];
@@ -305,16 +301,13 @@ void PmergeMe::binaryJacobsthalInsert(int group_size)
         if (current > pend_blocks)
             current = pend_blocks;
 
-        // inserisci blocchi da current-1 fino a previous
         for (int block = current - 1; block >= previous; block--)
         {
             int start = block * group_size;
             int end   = start + group_size;
 
-            // trova posizione in main
             int insertionIndex = findInsertPosition(start, group_size);
 
-            // inserisci blocco intero
             _vec.insert(
                 _vec.begin() + insertionIndex * group_size,
                 _vecPend.begin() + start,
@@ -322,32 +315,31 @@ void PmergeMe::binaryJacobsthalInsert(int group_size)
             );
         }
 
-        previous = jacob[j];
+        previous = current;
+
         if (previous >= pend_blocks)
             break;
     }
 }
 
 
-int PmergeMe::findInsertPosition(
-    std::vector<int>::reverse_iterator itPend,
-    int group_size)
+
+int PmergeMe::findInsertPosition(int start, int group_size)
 {
+    int pend_value = _vecPend[start + group_size - 1];
+
+    int total_blocks = _vec.size() / group_size;
+
     int left = 0;
-    int right = ((_vec.size() / group_size) % 2 == 0) ? 
-				(_vec.size() / group_size) / 2 :
-				(_vec.size() / group_size) / 2 + 1;
-	std::cout << "right = " << right << std::endl;
+    int right = total_blocks;
 
     while (left < right)
     {
         int mid = (left + right) / 2;
 
-        int main_value =
-            _vec[mid * group_size + group_size - 1];
-		std::cout << "main_value: " << main_value << std::endl;
+        int main_value = _vec[mid * group_size + group_size - 1];
 
-        if (*itPend < main_value)
+        if (pend_value < main_value)
             right = mid;
         else
             left = mid + 1;
@@ -355,7 +347,6 @@ int PmergeMe::findInsertPosition(
 	//std::cout << "insertion index: " << left << std::endl;
     return left;
 }
-
 
 void PmergeMe::printBefore(char **argv)
 {
