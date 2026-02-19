@@ -6,7 +6,7 @@
 /*   By: scarlucc <scarlucc@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:23:42 by scarlucc          #+#    #+#             */
-/*   Updated: 2026/02/04 17:33:59 by scarlucc         ###   ########.fr       */
+/*   Updated: 2026/02/19 15:22:58 by scarlucc         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,13 +16,13 @@
 #include <cctype> // isspace() for parsing
 #include <sstream> //parsing month and day
 
-void BitcoinExchange::load_database()
+bool BitcoinExchange::load_database()
 {
 	std::ifstream db_csv("data.csv");//load database
 	if (!db_csv.is_open())
 	{
 		std::cerr << "Error: could not open database." << std::endl;
-		return;
+		return false;
 	}
 
 	std::string line;
@@ -40,6 +40,7 @@ void BitcoinExchange::load_database()
 
 		_db[date] = price;
 	}
+	return true;
 }
 
 BitcoinExchange::BitcoinExchange()
@@ -49,7 +50,8 @@ BitcoinExchange::BitcoinExchange()
 
 BitcoinExchange::BitcoinExchange(const std::string &filename)
 {
-	this->load_database();
+	if (!this->load_database())
+		return ;
 	this->processInput(filename);
 }
 
@@ -119,7 +121,7 @@ void BitcoinExchange::processInput(const std::string &filename)
 			continue;
 		}
 		year = date.substr(0, hyphen);
-		if (!is_numeric(year))
+		if (!is_numeric(year) || year.size() != 4)
 		{
 			std::cerr << "Error: bad input (year) => " << line << std::endl;
 			continue;
@@ -172,7 +174,7 @@ void BitcoinExchange::processInput(const std::string &filename)
 		}
 
 		//std::cout << "value: " << value << " int value: " << amount << std::endl;//debugging, comment later
-		convert(line, date, amount);
+		convert(date, amount);
 		
 	}
 }
@@ -184,17 +186,18 @@ bool BitcoinExchange::is_numeric(const std::string& s) {
     return !s.empty();
 }
 
-void BitcoinExchange::convert(std::string line, std::string date, double amount)
+void BitcoinExchange::convert(std::string date, double amount)
 {
 	double result;
 	
+	if (_db.empty())
+    {
+        std::cerr << "Error: database empty." << std::endl;
+        return;
+    }
+	
 	std::map<std::string, double>::iterator it = _db.lower_bound(date);
-	if (it == _db.begin())
-	{
-		std::cerr << "Error: date too early or too late => " << line << std::endl;
-		return;
-	}
-	if (it != _db.end() && it->first != date)
+	if (it == _db.end() || (it != _db.begin() && it->first != date))
 		--it;	
 	
 	result = amount * it->second;
